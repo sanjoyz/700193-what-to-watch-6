@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр](https://up.htmlacademy.ru/react/6/user/700193).
-* Наставник: `Неизвестно`.
+* Наставник: [Анастасия Смирнова](https://up.htmlacademy.ru/react/6/user/232838).
 
 ---
 
