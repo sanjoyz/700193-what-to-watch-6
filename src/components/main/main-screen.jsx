@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import ReactDOM from 'react-dom';
 import MovieCard from '../movie-card/movie-card';
 
-const mainScreen = (props) => {
+const MainScreen = (props) => {
   const {movieCardsCount} = props;
   let movieCardsArr = Array(movieCardsCount).fill(1, 0);
   return (
@@ -32,10 +33,10 @@ const mainScreen = (props) => {
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{props.promoFilmName}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{props.promoFilmGenre}</span>
+                <span className="movie-card__year">{props.promoFilmReliseYear}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
@@ -113,4 +114,11 @@ const mainScreen = (props) => {
     </React.Fragment>
   );
 };
-export default mainScreen;
+
+MainScreen.propTypes = {
+  movieCardsCount: PropTypes.number.isRequired,
+  promoFilmName: PropTypes.string.isRequired,
+  promoFilmGenre: PropTypes.string.isRequired,
+  promoFilmReliseYear: PropTypes.number.isRequired
+};
+export default MainScreen;
