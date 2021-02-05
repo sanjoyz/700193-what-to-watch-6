@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import ReactDOM from 'react-dom';
 import MovieCard from '../movie-card/movie-card';
 
-const MainScreen = (props) => {
+const Main = (props) => {
   const {movieCardsCount} = props;
   let movieCardsArr = Array(movieCardsCount).fill(1, 0);
   return (
@@ -115,10 +115,10 @@ const MainScreen = (props) => {
   );
 };
 
-MainScreen.propTypes = {
+Main.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
   promoFilmReliseYear: PropTypes.number.isRequired
 };
-export default MainScreen;
+export default Main;
