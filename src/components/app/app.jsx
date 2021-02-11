@@ -10,15 +10,15 @@ import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 
 const App = (props) => {
-  const {movieCardsCount} = props;
+  const {movieCardsCount, promoFilmName, promoFilmGenre, promoFilmReliseYear, films} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Main movieCardsCount={movieCardsCount}
-            promoFilmName={props.promoFilmName}
-            promoFilmGenre={props.promoFilmGenre}
-            promoFilmReliseYear={props.promoFilmReliseYear}
+            promoFilmName={promoFilmName}
+            promoFilmGenre={promoFilmGenre}
+            promoFilmReliseYear={promoFilmReliseYear}
           />
         </Route>
         <Route exact path="/login">
@@ -28,7 +28,7 @@ const App = (props) => {
           <MyList />
         </Route>
         <Route exact path="/films/:id">
-          <Film />
+          <Film films={films}/>
         </Route>
         <Route exact path="/films/:id/review">
           <AddReview />
@@ -47,7 +47,8 @@ App.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.number.isRequired
+  promoFilmReliseYear: PropTypes.number.isRequired,
+  films: PropTypes.array
 };
 
 export default App;

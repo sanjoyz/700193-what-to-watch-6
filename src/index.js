@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import films from './mocks/films.js';
 const Setting = {
   MOVIE_CARD_DEFAULT_COUNT: 20,
   PROMO_FILM_NAME: `The Grand Budapest`,
@@ -14,6 +15,7 @@ ReactDOM.render(
       promoFilmName={Setting.PROMO_FILM_NAME}
       promoFilmGenre={Setting.PROMO_FILM_GENRE}
       promoFilmReliseYear={Setting.PROMO_FILM_RELISE_YEAR}
+      films = {films}
     />, document.querySelector(`#root`)
 
 );
