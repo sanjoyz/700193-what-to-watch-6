@@ -1,22 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card';
 
-
 const FilmList = (props) => {
-  const state = React.useState();
-  const {film} = props;
-  const [name, preview_image] = film;
-
+  const [activeFilmId, setActive] = React.useState(0);
+  const {films} = props;
   return (
     <React.Fragment>
-      <MovieCard previewImage={preview_image} name ={name}/>
+      {films.map((film) => {
+        return <MovieCard key = {film.id} previewImage={film.preview_image} onClick={console.log('click1')} name ={film.name}/>;
+      })}
     </React.Fragment>
   );
 };
 
 FilmList.PropTypes = {
-  movieCardsCount: PropTypes.number
+  films: PropTypes.array,
 };
 
 export default FilmList;
