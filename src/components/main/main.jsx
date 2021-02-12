@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 
 const Main = (props) => {
-  const {movieCardsCount} = props;
   const {films} = props;
-  const [film] = films;
-  let movieCardsArr = Array(movieCardsCount).fill(1, 0);
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -94,7 +91,7 @@ const Main = (props) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            <FilmList film={film}/>
+            <FilmList films={films}/>
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
