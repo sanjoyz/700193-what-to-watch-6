@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import Film from '../film/film';
+import MovieCard from '../movie-card/movie-card';
+
 
 const FilmList = (props) => {
-  const {movieCardsCount} = props;
-  let movieCardsArr = Array(movieCardsCount).fill(1, 0);
+  const state = React.useState();
+  const {film} = props;
+  const [name, preview_image] = film;
 
   return (
     <React.Fragment>
-      {movieCardsArr.map((name, i) => <Film key={1 + i}/>)}
+      <MovieCard previewImage={preview_image} name ={name}/>
     </React.Fragment>
   );
 };

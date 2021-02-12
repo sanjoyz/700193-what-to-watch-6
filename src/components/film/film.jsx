@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const Film = (props) => {
-  const {films} = props;
+  const {films, id} = props;
   const [film] = films;
   return (
     <React.Fragment>

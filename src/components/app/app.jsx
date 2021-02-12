@@ -19,6 +19,7 @@ const App = (props) => {
             promoFilmName={promoFilmName}
             promoFilmGenre={promoFilmGenre}
             promoFilmReliseYear={promoFilmReliseYear}
+            films = {films}
           />
         </Route>
         <Route exact path="/login">
@@ -28,7 +29,7 @@ const App = (props) => {
           <MyList />
         </Route>
         <Route exact path="/films/:id">
-          <Film films={films}/>
+          <Film/>
         </Route>
         <Route exact path="/films/:id/review">
           <AddReview />
