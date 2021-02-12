@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MovieCard = (props) => {
-  const {film} = props;
-  const [previewImage, name] = film;
+  const name = props.name
+  const previewImage = props.previewImage;
   return (
     <React.Fragment>
       <article className="small-movie-card catalog__movies-card">
@@ -18,7 +18,6 @@ const MovieCard = (props) => {
   );
 };
 MovieCard.PropTypes = {
-  film: PropTypes.object,
   previewImage: PropTypes.string,
   name: PropTypes.string
 };
