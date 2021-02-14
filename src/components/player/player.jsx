@@ -3,7 +3,7 @@ import React from 'react';
 const Player = () => (
   <React.Fragment>
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
+      <video src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm" className="player__video" poster="img/player-poster.jpg" />
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">

@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
+import PropTypes from 'prop-types';
 
 const MyList = (props) => {
   const {films} = props;
@@ -57,4 +58,8 @@ const MyList = (props) => {
     </React.Fragment>
   );
 };
+MyList.propTypes = {
+  films: PropTypes.array
+};
+
 export default MyList;

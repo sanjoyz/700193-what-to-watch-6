@@ -26,7 +26,7 @@ const App = (props) => {
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList films = {films}/>
         </Route>
         <Route exact path="/films/:id">
           <Film/>
@@ -35,7 +35,7 @@ const App = (props) => {
           <AddReview />
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player film={films[0]} />
         </Route>
         <Route>
           <NotFound/>
@@ -48,7 +48,7 @@ App.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.number.isRequired,
+  promoFilmReliseYear: PropTypes.string.isRequired,
   films: PropTypes.array
 };
 
