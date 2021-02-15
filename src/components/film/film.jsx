@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 
 const Film = (props) => {
-  const {films, id} = props;
+  const {films} = props;
   const [film] = films;
   return (
     <React.Fragment>
@@ -161,7 +161,7 @@ const Film = (props) => {
     </React.Fragment>
   );
 };
-Film.PropTypes = {
+Film.propTypes = {
   films: PropTypes.array,
   film: PropTypes.object
 };

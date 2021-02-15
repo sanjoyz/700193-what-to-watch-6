@@ -32,7 +32,7 @@ const App = (props) => {
           <Film/>
         </Route>
         <Route exact path="/films/:id/review">
-          <AddReview />
+          <AddReview name={films[0].name} previewImage={films[0].preview_image} />
         </Route>
         <Route exact path="/player/:id">
           <Player film={films[0]} />
