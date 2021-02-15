@@ -11,6 +11,7 @@ import NotFound from '../not-found/not-found';
 
 const App = (props) => {
   const {movieCardsCount, promoFilmName, promoFilmGenre, promoFilmReliseYear, films} = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -28,14 +29,12 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList films = {films}/>
         </Route>
-        <Route exact path="/films/:id">
-          <Film/>
-        </Route>
+        <Route exact path="/films/:id" component={Film}/>
         <Route exact path="/films/:id/review">
-          <AddReview name={films[0].name} previewImage={films[0].preview_image} />
+          <AddReview name={films[0].name} previewImage={films[0].preview_image}/>
         </Route>
         <Route exact path="/player/:id">
-          <Player film={films[0]} />
+          <Player film={films[0]}/>
         </Route>
         <Route>
           <NotFound/>

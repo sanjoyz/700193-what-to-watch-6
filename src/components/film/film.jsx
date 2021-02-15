@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import films from '../../mocks/films.js';
 
 const Film = (props) => {
-  const {films} = props;
-  const [film] = films;
+  // самое изящное решение в моей жизни, но нет времени объяснять
+  const id = props.match.params.id.slice(1);
+  const filmsArray = {films};
+  const filter = filmsArray.films.filter((film) => (film.id === parseInt(id, 10)));
+  const currentFilm = filter[0];
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={currentFilm.preview_image} alt="The Grand Budapest Hotel" />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -33,10 +36,10 @@ const Film = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{film.name}</h2>
+              <h2 className="movie-card__title">{currentFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{film.genre}</span>
-                <span className="movie-card__year">{film.released}</span>
+                <span className="movie-card__genre">{currentFilm.genre}</span>
+                <span className="movie-card__year">{currentFilm.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -80,21 +83,21 @@ const Film = (props) => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">{film.rating}</div>
+                <div className="movie-rating__score">{currentFilm.rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{film.scores_count} ratings</span>
+                  <span className="movie-rating__count">{currentFilm.scores_count} ratings</span>
                 </p>
               </div>
 
               <div className="movie-card__text">
-                <p>{film.description}</p>
+                <p>{currentFilm.description}</p>
 
                 <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
 
-                <p className="movie-card__director"><strong>{film.director}</strong></p>
+                <p className="movie-card__director"><strong>{currentFilm.director}</strong></p>
 
-                <p className="movie-card__starring"><strong>Starring: {film.starring.join(`, `)} and other</strong></p>
+                <p className="movie-card__starring"><strong>Starring: {currentFilm.starring.join(`, `)} and other</strong></p>
               </div>
             </div>
           </div>
@@ -163,7 +166,7 @@ const Film = (props) => {
 };
 Film.propTypes = {
   films: PropTypes.array,
-  film: PropTypes.object
+  film: PropTypes.object,
 };
 
 export default Film;
