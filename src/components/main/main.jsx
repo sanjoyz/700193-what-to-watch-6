@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import ReactDOM from 'react-dom';
-import MovieCard from '../movie-card/movie-card';
+import FilmList from '../film-list/film-list';
 
 const Main = (props) => {
-  const {movieCardsCount} = props;
-  let movieCardsArr = Array(movieCardsCount).fill(1, 0);
+  const {films} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -92,7 +91,7 @@ const Main = (props) => {
             </li>
           </ul>
           <div className="catalog__movies-list">
-            {movieCardsArr.map((name, i) => <MovieCard key={1 + i}/>)}
+            <FilmList films={films}/>
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -119,6 +118,8 @@ Main.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.number.isRequired
+  promoFilmReliseYear: PropTypes.number.isRequired,
+  films: PropTypes.object,
+  film: PropTypes.array
 };
 export default Main;

@@ -10,31 +10,31 @@ import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 
 const App = (props) => {
-  const {movieCardsCount} = props;
+  const {movieCardsCount, promoFilmName, promoFilmGenre, promoFilmReliseYear, films} = props;
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Main movieCardsCount={movieCardsCount}
-            promoFilmName={props.promoFilmName}
-            promoFilmGenre={props.promoFilmGenre}
-            promoFilmReliseYear={props.promoFilmReliseYear}
+            promoFilmName={promoFilmName}
+            promoFilmGenre={promoFilmGenre}
+            promoFilmReliseYear={promoFilmReliseYear}
+            films = {films}
           />
         </Route>
         <Route exact path="/login">
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList films = {films}/>
         </Route>
-        <Route exact path="/films/:id">
-          <Film />
-        </Route>
+        <Route exact path="/films/:id" component={Film}/>
         <Route exact path="/films/:id/review">
-          <AddReview />
+          <AddReview name={films[0].name} previewImage={films[0].preview_image}/>
         </Route>
         <Route exact path="/player/:id">
-          <Player />
+          <Player film={films[0]}/>
         </Route>
         <Route>
           <NotFound/>
@@ -47,7 +47,8 @@ App.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.number.isRequired
+  promoFilmReliseYear: PropTypes.string.isRequired,
+  films: PropTypes.array
 };
 
 export default App;
