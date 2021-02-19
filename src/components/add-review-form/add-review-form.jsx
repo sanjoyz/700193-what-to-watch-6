@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const AddReviewForm = (props) => {
+const AddReviewForm = () => {
   const [reviewForm, setReviewForm] = useState({
     rating: 1,
     text: ``,
@@ -23,8 +23,8 @@ const AddReviewForm = (props) => {
           <div className="rating__stars">
             {ratingStars.map((star) => {
               return ([
-                <input className="rating__input" id={`star-` + star} type="radio" name="rating" value={star} onChange={handleFieldChange}/>,
-                <label className="rating__label" htmlFor={`star-` + star}>{`Rating ` + star}</label>
+                <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} onChange={handleFieldChange}/>,
+                <label className="rating__label" key={star} htmlFor={`star-` + star}>{`Rating ` + star}</label>
               ]
               );
             })}

@@ -167,6 +167,11 @@ const Film = (props) => {
 Film.propTypes = {
   films: PropTypes.array,
   film: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  }),
 };
 
 export default Film;

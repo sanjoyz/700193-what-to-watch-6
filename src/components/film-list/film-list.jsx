@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card';
 
 const FilmList = (props) => {
-  const [activeFilmId, setActive] = React.useState(0);
+  const [, setActive] = React.useState(0);
   const {films} = props;
   function onHover(id) {
     setActive(id);
