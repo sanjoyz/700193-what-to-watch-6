@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card';
 
 const FilmList = (props) => {
-  const [, setActive] = React.useState(0);
+  const [id, setActive] = React.useState(0);
   const {films} = props;
   function onHover(id) {
     setActive(id);
@@ -17,6 +17,8 @@ const FilmList = (props) => {
           name={film.name}
           id={film.id}
           onHover = {onHover}
+          posterImage={film.poster_image}
+          videoLink={film.video_link}
         />;
       })}
     </React.Fragment>
