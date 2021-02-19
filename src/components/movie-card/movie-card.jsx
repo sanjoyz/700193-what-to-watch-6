@@ -10,11 +10,11 @@ const MovieCard = (props) => {
   // если мы этого не делали то висит просто div
   // через useEffect рендерить VideoPlayer и удалять, передавая функциюы
   // вторым параметром в useEffect передать id фильма на который навелся? Тем самым задастся условие для компонент апдейт
-  const [focusedCard, setFocused] = useState(0);
+  const [focusedCard, setFocused] = useState(null);
   const isFocused = true;
   useEffect(() => {
     console.log(`Hello from useEffect`);
-  });
+  }, [id]);
 
   /*
   {isFocused ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} height={175} width={280}/>
@@ -31,12 +31,13 @@ const MovieCard = (props) => {
     <React.Fragment>
       <article className="small-movie-card catalog__movies-card" onMouseEnter={onHover(id)}
         onMouseOver={() => {
-          console.log(`focused card:` + focusedCard);
           setFocused(id);
         }}>
-        <div className="small-movie-card__image">
-          <img src={previewImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175}/>
-        </div>
+        {focusedCard !== null ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>
+          : <div className="small-movie-card__image">
+            <img src={previewImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175}/>
+          </div>
+        }
         <h3 className="small-movie-card__title">
           <Link className="small-movie-card__link" to={
             {
