@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VideoPlayer = (props) => {
-  const {videoLink, posterImage, height, width, isAutoPlay} = props;
+  const {videoLink, height, width} = props;
   // poster={posterImage} постер
   return (
     <React.Fragment>
