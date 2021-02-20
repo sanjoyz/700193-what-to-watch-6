@@ -118,8 +118,8 @@ Main.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
   promoFilmName: PropTypes.string.isRequired,
   promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.number.isRequired,
-  films: PropTypes.object,
-  film: PropTypes.array
+  promoFilmReliseYear: PropTypes.string.isRequired,
+  films: PropTypes.array,
+  film: PropTypes.object
 };
 export default Main;

@@ -40,7 +40,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  film: PropTypes.array
+  film: PropTypes.object
 };
 
 export default Player;
