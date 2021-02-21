@@ -41,7 +41,7 @@ export default [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Drama`,
     "released": 2014,
     "is_favorite": false,
     "reviews": [
@@ -68,7 +68,7 @@ export default [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Fantasy`,
     "released": 2014,
     "is_favorite": false,
     "reviews": [
@@ -95,7 +95,7 @@ export default [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Detective`,
     "released": 2014,
     "is_favorite": false,
     "reviews": [
@@ -176,7 +176,7 @@ export default [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Documentary`,
     "released": 2014,
     "is_favorite": false,
     "reviews": [
@@ -203,7 +203,7 @@ export default [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Horror`,
     "released": 2014,
     "is_favorite": false,
     "reviews": [
