@@ -44,7 +44,6 @@ const MovieCard = (props) => {
 MovieCard.propTypes = {
   previewImage: PropTypes.string,
   name: PropTypes.string,
-  onHover: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   posterImage: PropTypes.string,
   videoLink: PropTypes.string,
