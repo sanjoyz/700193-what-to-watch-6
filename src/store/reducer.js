@@ -1,20 +1,17 @@
 import {ActionType} from "./action";
-const initState = {
-  genre: ``,
-  filmList: []
-};
+import initState from "./initialState";
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return {
         ...state,
-        genre: action.payload
+        genre: action.value
       };
     case ActionType.GET_FILMS_LIST:
       return {
         ...state,
-        filmList: action.payload
+        filmList: action.value
 
       };
 
