@@ -8,6 +8,8 @@ import Film from '../film/film';
 import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
+import {connect} from 'react-redux';
+
 
 const App = (props) => {
   const {movieCardsCount, promoFilmName, promoFilmGenre, promoFilmReliseYear, films} = props;
@@ -51,4 +53,14 @@ App.propTypes = {
   films: PropTypes.array
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  films: state.films,
+  movieCardsCount: state.MOVIE_CARD_DEFAULT_COUNT,
+  promoFilmName: state.PROMO_FILM_NAME,
+  promoFilmGenre: state.PROMO_FILM_GENRE,
+  promoFilmReliseYear: state.PROMO_FILM_RELISE_YEAR,
+});
+
+
+export {App};
+export default connect(mapStateToProps)(App);
