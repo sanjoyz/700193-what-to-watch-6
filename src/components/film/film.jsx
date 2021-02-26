@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import films from '../../mocks/films.js';
+// import films from '../../mocks/films.js';
 
 const Film = (props) => {
   // самое изящное решение в моей жизни, но нет времени объяснять
