@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card';
 import {connect} from 'react-redux';
 
-
 const FilmList = (props) => {
   const {films} = props;
   return (

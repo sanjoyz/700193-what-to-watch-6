@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
 import PropTypes from 'prop-types';
@@ -9,21 +9,23 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {connect} from 'react-redux';
+import {fetchFilmsList, fetchPromoFilm} from '../../store/api-actions';
 
 
 const App = (props) => {
-  const {movieCardsCount, promoFilmName, promoFilmGenre, promoFilmReliseYear, films} = props;
+  const {films, promoFilm, onLoadData, isDataLoaded} = props;
+
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main movieCardsCount={movieCardsCount}
-            promoFilmName={promoFilmName}
-            promoFilmGenre={promoFilmGenre}
-            promoFilmReliseYear={promoFilmReliseYear}
-            films = {films}
-          />
+          <Main films={films} promoFilm={promoFilm}/>
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -33,7 +35,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/films/:id" component={Film}/>
         <Route exact path="/films/:id/review">
-          <AddReview name={films[0].name} previewImage={films[0].preview_image}/>
+          <AddReview /* name={films[0].name} previewImage={films[0].preview_image}*//>
         </Route>
         <Route exact path="/player/:id">
           <Player film={films[0]}/>
@@ -46,21 +48,26 @@ const App = (props) => {
   );
 };
 App.propTypes = {
-  movieCardsCount: PropTypes.number.isRequired,
-  promoFilmName: PropTypes.string.isRequired,
-  promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.string.isRequired,
-  films: PropTypes.array
+  films: PropTypes.array,
+  promoFilm: PropTypes.object,
+  onLoadData: PropTypes.func,
+  isDataLoaded: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   films: state.films,
+  promoFilm: state.promoFilm,
+  isDataLoaded: state.isDataLoaded,
   movieCardsCount: state.MOVIE_CARD_DEFAULT_COUNT,
-  promoFilmName: state.PROMO_FILM_NAME,
-  promoFilmGenre: state.PROMO_FILM_GENRE,
-  promoFilmReliseYear: state.PROMO_FILM_RELISE_YEAR,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchFilmsList());
+    dispatch(fetchPromoFilm());
+  }
 });
 
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

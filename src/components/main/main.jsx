@@ -4,12 +4,13 @@ import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
 
 const Main = (props) => {
-  const {films} = props;
+
+  const {films, promoFilm} = props;
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm.background_image} alt="The Grand Budapest Hotel" />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header movie-card__head">
@@ -29,13 +30,13 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
+              <img src={promoFilm.poster_image} alt="The Grand Budapest Hotel poster" width={218} height={327} />
             </div>
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{props.promoFilmName}</h2>
+              <h2 className="movie-card__title">{promoFilm.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{props.promoFilmGenre}</span>
-                <span className="movie-card__year">{props.promoFilmReliseYear}</span>
+                <span className="movie-card__genre">{promoFilm.genre}</span>
+                <span className="movie-card__year">{promoFilm.released}</span>
               </p>
               <div className="movie-card__buttons">
                 <button className="btn btn--play movie-card__button" type="button">
@@ -85,10 +86,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   movieCardsCount: PropTypes.number.isRequired,
-  promoFilmName: PropTypes.string.isRequired,
-  promoFilmGenre: PropTypes.string.isRequired,
-  promoFilmReliseYear: PropTypes.string.isRequired,
   films: PropTypes.array,
-  film: PropTypes.object
+  promoFilm: PropTypes.object
 };
 export default Main;

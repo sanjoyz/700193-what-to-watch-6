@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Film = (props) => {
   // самое изящное решение в моей жизни, но нет времени объяснять
   const id = props.match.params.id.slice(1);
-  const filmsArray = {films};
+  const filmsArray = {props};
   const filter = filmsArray.films.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
   return (
