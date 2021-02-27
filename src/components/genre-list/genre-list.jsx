@@ -35,7 +35,7 @@ GenreList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreChange(genre) {
-    dispatch(ActionCreator.getFilmList(genre));
+    dispatch(ActionCreator.filterFilms(genre));
   }
 });
 

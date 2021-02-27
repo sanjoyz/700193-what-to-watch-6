@@ -8,7 +8,7 @@ const reducer = (state = initState, action) => {
         ...state,
         genre: action.value.target.innerText
       };
-    case ActionType.GET_FILMS_LIST:
+    case ActionType.FILTER_FILMS:
       if (action.value.target.innerText === `All genres`) {
         return {...state,
           films: initState.films
@@ -20,7 +20,19 @@ const reducer = (state = initState, action) => {
 
         };
       }
-
+    case ActionType.GET_FILMS_LIST:
+    {
+      return {
+        ...state,
+        films: action.value,
+        isDataLoaded: true,
+      };
+    }
+    case ActionType.GET_PROMO_FILM:
+      return {
+        ...state,
+        promoFilm: action.value,
+      };
     default:
       return state;
   }
