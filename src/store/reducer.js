@@ -25,6 +25,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         films: action.value,
+        isDataLoaded: true,
       };
     }
     case ActionType.GET_PROMO_FILM:

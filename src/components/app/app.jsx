@@ -10,7 +10,7 @@ import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {connect} from 'react-redux';
 import {fetchFilmsList, fetchPromoFilm} from '../../store/api-actions';
-
+import LoadingScreen from '../loading-screen/loading-screen';
 
 const App = (props) => {
   const {films, promoFilm, onLoadData, isDataLoaded} = props;
@@ -20,6 +20,11 @@ const App = (props) => {
       onLoadData();
     }
   }, [isDataLoaded]);
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen/>
+    );
+  }
 
   return (
     <BrowserRouter>
