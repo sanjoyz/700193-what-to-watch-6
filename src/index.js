@@ -9,7 +9,11 @@ import thunk from 'redux-thunk';
 import {createAPI} from './api';
 
 const api = createAPI(/* onUnauthorized*/);
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
+const store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))
+    )
+);
 
 ReactDOM.render(
     <Provider store={store}>
