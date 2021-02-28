@@ -2,7 +2,8 @@ export const ActionType = {
   CHANGE_GENRE: `filter/changeGenre`,
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
-  FILTER_FILMS: `filter/`
+  FILTER_FILMS: `filter/`,
+  REQUIRE_AUTHORIZATION: `user/requireAuthorization`
 };
 
 export const ActionCreator = {
@@ -21,5 +22,9 @@ export const ActionCreator = {
   getPromoFilm: (value) => ({
     type: ActionType.GET_PROMO_FILM,
     value
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRE_AUTHORIZATION,
+    value: status,
   })
 };

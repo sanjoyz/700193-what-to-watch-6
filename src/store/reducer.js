@@ -33,6 +33,11 @@ const reducer = (state = initState, action) => {
         ...state,
         promoFilm: action.value,
       };
+    case ActionType.REQUIRE_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.value
+      };
     default:
       return state;
   }

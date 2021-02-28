@@ -1,12 +1,17 @@
-import {APIRoute} from '../const';
+import {APIRoute, AuthorizationStatus} from '../const';
 import {ActionCreator} from './action';
 
-export const fetchFilmsList = () => (dispatchEvent, _getState, api) => (
+export const fetchFilmsList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FILMS)
-    .then(({data}) => dispatchEvent(ActionCreator.getFilmsList(data)))
+    .then(({data}) => dispatch(ActionCreator.getFilmsList(data)))
 );
 
-export const fetchPromoFilm = () => (dispatchEvent, _getState, api) => (
+export const fetchPromoFilm = () => (dispatch, _getState, api) => (
   api.get(APIRoute.PROMO_FILM)
-      .then(({data}) => dispatchEvent(ActionCreator.getPromoFilm(data)))
+      .then(({data}) => dispatch(ActionCreator.getPromoFilm(data)))
+);
+
+export const login = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.LOGIN)
+        .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
 );
