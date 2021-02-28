@@ -3,7 +3,8 @@ export const ActionType = {
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
   FILTER_FILMS: `filter/`,
-  REQUIRE_AUTHORIZATION: `user/requireAuthorization`
+  REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
+  REDIRECT_TO_ROUTE: `main/redirectToRoute`
 };
 
 export const ActionCreator = {
@@ -26,5 +27,9 @@ export const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRE_AUTHORIZATION,
     value: status,
+  }),
+  redirectToRoute: (route) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    value: route
   })
 };
