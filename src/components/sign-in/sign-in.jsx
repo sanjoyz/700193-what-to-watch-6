@@ -2,11 +2,13 @@ import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {signIn} from '../../store/api-actions';
-
+import {AppRoute} from '../../const';
+import {useHistory} from 'react-router-dom';
 const SignIn = ({onSubmit}) => {
 
   const loginRef = useRef();
   const passwordRef = useRef();
+  const history = useHistory();
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -43,7 +45,7 @@ const SignIn = ({onSubmit}) => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <button onClick={history.push(AppRoute.MAIN)} className="sign-in__btn" type="submit">Sign in</button>
             </div>
           </form>
         </div>
@@ -67,7 +69,7 @@ const SignIn = ({onSubmit}) => {
 };
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
