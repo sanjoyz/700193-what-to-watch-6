@@ -11,6 +11,8 @@ import NotFound from '../not-found/not-found';
 import {connect} from 'react-redux';
 import {fetchFilmsList, fetchPromoFilm} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
+import PrivateRoute from '../private-route/private-route';
+import {AppRoute} from '../../const';
 
 const App = (props) => {
   const {films, promoFilm, onLoadData, isDataLoaded} = props;
@@ -29,9 +31,15 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Main films={films} promoFilm={promoFilm}/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MAIN}
+          render={() => {
+            return (
+              <Main films={films} promoFilm={promoFilm}/>
+            );
+          }}
+        />
         <Route exact path="/login">
           <SignIn />
         </Route>
