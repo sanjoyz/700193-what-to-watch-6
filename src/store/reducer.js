@@ -11,13 +11,12 @@ const reducer = (state = initState, action) => {
     case ActionType.FILTER_FILMS:
       if (action.value.target.innerText === `All genres`) {
         return {...state,
-          films: initState.films
+          films: action.value
         };
       } else {
         return {
           ...state,
           films: state.films.filter((e) => (e.genre === action.value.target.innerText))
-
         };
       }
     case ActionType.GET_FILMS_LIST:

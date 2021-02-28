@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Router as BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
 import PropTypes from 'prop-types';
 import SignIn from '../sign-in/sign-in';
@@ -13,6 +13,7 @@ import {fetchFilmsList, fetchPromoFilm} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import {AppRoute} from '../../const';
+import browserHistory from '../../browser-history';
 
 const App = (props) => {
   const {films, promoFilm, onLoadData, isDataLoaded} = props;
@@ -29,7 +30,7 @@ const App = (props) => {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <PrivateRoute
           exact
@@ -41,7 +42,7 @@ const App = (props) => {
           }}
         />
         <Route exact path="/login">
-          <SignIn />
+          <SignIn/>
         </Route>
         <Route exact path="/mylist">
           <MyList films = {films}/>
