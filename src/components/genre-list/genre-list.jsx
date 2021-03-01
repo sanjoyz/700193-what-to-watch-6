@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 
 const GenreList = (props) => {
   const {films, onGenreChange} = props;
-  const genres = [];
+  const genresSet = new Set();
   films.forEach((film) => {
-    genres.push(film.genre);
+    genresSet.add(film.genre);
   });
+  const genresArr = Array.from(genresSet);
 
   return (
     <React.Fragment>
@@ -16,7 +17,7 @@ const GenreList = (props) => {
         <li className="catalog__genres-item catalog__genres-item--active">
           <a href="#" onClick={onGenreChange} className="catalog__genres-link">All genres</a>
         </li>
-        {genres.map((genre) => {
+        {genresArr.map((genre) => {
           return (
             <li key={genre + Math.random()} className="catalog__genres-item">
               <a href="#" onClick={onGenreChange} className="catalog__genres-link">{genre}</a>

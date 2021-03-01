@@ -5,7 +5,7 @@ const SERVER_TIMEOUT = 5000;
 const UNAUTHORIZED = 401;
 
 
-export const createAPI = (/* onUnauthorized*/) => {
+export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: BACKEND_SERVER,
     timeout: SERVER_TIMEOUT,
@@ -15,7 +15,7 @@ export const createAPI = (/* onUnauthorized*/) => {
   const onFail = (err) => {
     const {response} = err;
     if (response.status === UNAUTHORIZED) {
-    // onUnauthorized();
+      onUnauthorized();
       throw err;
     }
     throw err;

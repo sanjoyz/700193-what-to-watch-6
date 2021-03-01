@@ -1,9 +1,10 @@
-// import films from '../mocks/films';
+import {AuthorizationStatus} from '../const';
 const initState = {
   genre: `All genres`,
   films: [],
   MOVIE_CARD_DEFAULT_COUNT: 20,
   promoFilm: {},
-  isDataLoaded: false
+  isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.NO_AUTH
 };
 export default initState;
