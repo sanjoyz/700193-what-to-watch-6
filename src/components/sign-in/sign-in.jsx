@@ -1,22 +1,21 @@
 import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {signIn} from '../../store/api-actions';
-import {AppRoute} from '../../const';
-import {useHistory} from 'react-router-dom';
-const SignIn = ({onSubmit}) => {
-
+const SignIn = () => {
   const loginRef = useRef();
   const passwordRef = useRef();
-  const history = useHistory();
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
-    onSubmit({
+    dispatch(signIn({
       login: loginRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
+
   return (
     <React.Fragment>
       <div className="user-page">
@@ -45,7 +44,7 @@ const SignIn = ({onSubmit}) => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button onClick={history.push(AppRoute.MAIN)} className="sign-in__btn" type="submit">Sign in</button>
+              <button className="sign-in__btn" type="submit">Sign in</button>
             </div>
           </form>
         </div>
@@ -72,12 +71,6 @@ SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(signIn(authData));
-  }
-});
+export default SignIn;
 
-export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
 

@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 // import films from '../../mocks/films.js';
 
 const Film = (props) => {
+  
   // самое изящное решение в моей жизни, но нет времени объяснять
-  const id = props.match.params.id.slice(1);
-  const filmsArray = {props};
-  const filter = filmsArray.films.filter((film) => (film.id === parseInt(id, 10)));
+  const id = props.route.match.params.id.slice(1);
+  const [...filmsArray] = props.films;
+  const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={currentFilm.preview_image} alt="The Grand Budapest Hotel" />
+            <img src={currentFilm.background_image} alt={currentFilm.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -64,7 +65,7 @@ const Film = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={currentFilm.poster_image} alt={currentFilm.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -168,10 +169,13 @@ Film.propTypes = {
   films: PropTypes.array,
   film: PropTypes.object,
   match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
-  }),
+    router: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string.isRequired
+      })
+    }),
+  })
+
 };
 
 export default Film;
