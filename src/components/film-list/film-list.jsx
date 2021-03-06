@@ -25,10 +25,10 @@ FilmList.propTypes = {
   films: PropTypes.array,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films
+const mapStateToProps = ({DATA}) => ({
+  films: DATA.films
 });
 
 export {FilmList};
-export default connect(mapStateToProps, null)(FilmList);
+export default React.memo(connect(mapStateToProps, null)(FilmList));
 

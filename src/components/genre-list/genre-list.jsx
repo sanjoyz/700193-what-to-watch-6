@@ -34,6 +34,11 @@ GenreList.propTypes = {
   onGenreChange: PropTypes.func
 };
 
+const mapStateToProps = ({DATA, FILMS}) => ({
+  genre: FILMS.genre,
+  films: DATA.films
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onGenreChange(genre) {
     dispatch(ActionCreator.filterFilms(genre));
@@ -41,6 +46,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {GenreList};
-export default connect(null, mapDispatchToProps)(GenreList);
+export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
 
 

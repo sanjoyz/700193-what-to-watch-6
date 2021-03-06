@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import films from '../../mocks/films.js';
 
 const Film = (props) => {
-  
+
   // самое изящное решение в моей жизни, но нет времени объяснять
   const id = props.route.match.params.id.slice(1);
   const [...filmsArray] = props.films;
@@ -168,8 +168,8 @@ const Film = (props) => {
 Film.propTypes = {
   films: PropTypes.array,
   film: PropTypes.object,
-  match: PropTypes.shape({
-    router: PropTypes.shape({
+  route: PropTypes.shape({
+    match: PropTypes.shape({
       params: PropTypes.shape({
         id: PropTypes.string.isRequired
       })
