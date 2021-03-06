@@ -1,7 +1,10 @@
-
-import initState from '../initialState';
 import {ActionType} from '../action';
 
+const initState = {
+  filteredFilms: ``,
+  genre: `All genre`,
+  films: ``,
+};
 const process = (state = initState, action) => {
 
   switch (action.type) {

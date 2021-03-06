@@ -5,12 +5,12 @@ import {user} from './user/user';
 
 export const NameSpace = {
   DATA: `DATA`,
-  FILMS: `FILMS`,
+  PROCESS: `PROCESS`,
   USER: `USER`
 };
 
 export default combineReducers({
   [NameSpace.DATA]: filmsData,
-  [NameSpace.FILMS]: process,
+  [NameSpace.PROCESS]: process,
   [NameSpace.USER]: user,
 });
