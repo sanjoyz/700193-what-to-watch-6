@@ -68,11 +68,11 @@ App.propTypes = {
   isDataLoaded: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films,
-  promoFilm: state.promoFilm,
-  isDataLoaded: state.isDataLoaded,
-  movieCardsCount: state.MOVIE_CARD_DEFAULT_COUNT,
+const mapStateToProps = ({DATA}) => ({
+  films: DATA.films,
+  promoFilm: DATA.promoFilm,
+  isDataLoaded: DATA.isDataLoaded,
+  movieCardsCount: DATA.MOVIE_CARD_DEFAULT_COUNT,
 });
 
 const mapDispatchToProps = (dispatch) => ({
