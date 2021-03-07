@@ -47,9 +47,9 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList films = {films}/>
         </Route>
-        <Route exact path="/films/:id" component={Film}/>
+        <Route exact path="/films/:id" component={(route) => <Film route={route} films={films}/>}/>
         <Route exact path="/films/:id/review">
-          <AddReview /* name={films[0].name} previewImage={films[0].preview_image}*//>
+          <AddReview/>
         </Route>
         <Route exact path="/player/:id">
           <Player film={films[0]}/>
@@ -68,11 +68,11 @@ App.propTypes = {
   isDataLoaded: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films,
-  promoFilm: state.promoFilm,
-  isDataLoaded: state.isDataLoaded,
-  movieCardsCount: state.MOVIE_CARD_DEFAULT_COUNT,
+const mapStateToProps = ({DATA}) => ({
+  films: DATA.films,
+  promoFilm: DATA.promoFilm,
+  isDataLoaded: DATA.isDataLoaded,
+  movieCardsCount: DATA.MOVIE_CARD_DEFAULT_COUNT,
 });
 
 const mapDispatchToProps = (dispatch) => ({

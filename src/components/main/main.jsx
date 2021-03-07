@@ -89,4 +89,4 @@ Main.propTypes = {
   films: PropTypes.array,
   promoFilm: PropTypes.object
 };
-export default Main;
+export default React.memo(Main);
