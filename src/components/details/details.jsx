@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getTimeFromMins} from '../../const';
 const Details = (props) => {
   const {film} = props;
   return (
@@ -17,7 +18,9 @@ const Details = (props) => {
             <span className="movie-card__details-value">
               {film.starring.map((star) => {
                 return (
-                  <span key={star} >{star}</span>
+                  <React.Fragment key={star}>
+                    {star}<br/>
+                  </React.Fragment>
                 );
               })}
             </span>
@@ -27,7 +30,7 @@ const Details = (props) => {
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{`${parseInt(film.released, 10) / 60} h${parseInt(film.released, 10) % 60} m`}</span>
+            <span className="movie-card__details-value">{getTimeFromMins(film.run_time)}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>
