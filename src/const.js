@@ -25,3 +25,5 @@ export const getTimeFromMins = (mins) => {
   let minutes = mins % 60;
   return hours + `h ` + minutes + `m`;
 };
+
+export const SHOW_FILMS_STEP = 8;

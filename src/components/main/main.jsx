@@ -60,12 +60,7 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList films={films}/>
-          <div className="catalog__movies-list">
-            <FilmList films={films}/>
-          </div>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <FilmList films={films}/>
         </section>
         <footer className="page-footer">
           <div className="logo">
@@ -85,7 +80,6 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movieCardsCount: PropTypes.number.isRequired,
   films: PropTypes.array,
   promoFilm: PropTypes.object
 };
