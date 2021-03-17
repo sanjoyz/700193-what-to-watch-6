@@ -19,3 +19,9 @@ export const AppRoute = {
   FILMS: `/films`,
   PLAYER: `/player`,
 };
+
+export const getTimeFromMins = (mins) => {
+  let hours = Math.trunc(mins / 60);
+  let minutes = mins % 60;
+  return hours + `h ` + minutes + `m`;
+};
