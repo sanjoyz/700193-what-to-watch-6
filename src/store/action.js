@@ -5,7 +5,7 @@ export const ActionType = {
   GET_PROMO_FILM: `data/getPromoFilm`,
   GET_FILM_COMMENTS: `data/getFilmComments`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
-  REDIRECT_TO_ROUTE: `main/redirectToRoute`
+  REDIRECT_TO_ROUTE: `user/redirectToRoute`
 };
 
 export const ActionCreator = {

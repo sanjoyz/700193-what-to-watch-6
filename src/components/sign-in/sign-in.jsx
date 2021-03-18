@@ -2,9 +2,11 @@ import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {signIn} from '../../store/api-actions';
+import {useHistory} from 'react-router-dom';
 const SignIn = () => {
   const loginRef = useRef();
   const passwordRef = useRef();
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -14,6 +16,7 @@ const SignIn = () => {
       login: loginRef.current.value,
       password: passwordRef.current.value,
     }));
+    history.push(`/`);
   };
 
   return (
