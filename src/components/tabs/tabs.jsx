@@ -5,7 +5,7 @@ import Details from '../details/details';
 import FilmReviews from '../film-reviews/films-reviews';
 
 const Tabs = (props) => {
-  const {film} = props;
+  const {film, comments} = props;
   const [tab, setTab] = useState(1);
   const navClickHandler = (evt) => {
     evt.preventDefault();
@@ -21,7 +21,6 @@ const Tabs = (props) => {
         break;
     }
   };
-  // movie-nav__item--active
   return (
     <React.Fragment>
       <div className="movie-card__desc">
@@ -40,7 +39,7 @@ const Tabs = (props) => {
         </nav>
         {tab === 1 && <Overview film={film}/>}
         {tab === 2 && <Details film={film}/>}
-        {tab === 3 && <FilmReviews reviews={film}/>}
+        {tab === 3 && <FilmReviews comments={comments}/>}
       </div>
 
     </React.Fragment>
@@ -50,5 +49,6 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   film: PropTypes.object,
+  comments: PropTypes.arrayOf(PropTypes.object),
 };
 export default Tabs;

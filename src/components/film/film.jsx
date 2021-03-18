@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
-
+import {fetchFilmComments} from '../../store/api-actions';
+import {connect} from 'react-redux';
 const Film = (props) => {
-
-  // самое изящное решение в моей жизни, но нет времени объяснять
   const id = props.route.match.params.id.slice(1);
+  const {isCommentsLoaded, onCommentsLoad, comments} = props;
   const [...filmsArray] = props.films;
   const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
+  useEffect(() => {
+    if (!isCommentsLoaded) {
+      onCommentsLoad(id);
+    }
+  }, [isCommentsLoaded]);
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -69,7 +75,7 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs film = {currentFilm}/>
+              <Tabs film = {currentFilm} comments={comments}/>
             </div>
           </div>
         </div>
@@ -144,8 +150,23 @@ Film.propTypes = {
         id: PropTypes.string.isRequired
       })
     }),
-  })
-
+  }),
+  isCommentsLoaded: PropTypes.bool,
+  onCommentsLoad: PropTypes.func,
+  comments: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default Film;
+const mapStateToProps = ({DATA}) => ({
+  comments: DATA.comments,
+  isCommentsLoaded: DATA.isCommentsLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCommentsLoad(id) {
+    dispatch(fetchFilmComments(id));
+  }
+});
+
+
+export {Film};
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
