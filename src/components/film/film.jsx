@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
 import {fetchFilmComments} from '../../store/api-actions';
 import {connect} from 'react-redux';
+import NotFound from '../not-found/not-found';
+import {Link} from 'react-router-dom';
 const Film = (props) => {
   const id = props.route.match.params.id.slice(1);
-  const {isCommentsLoaded, onCommentsLoad, comments} = props;
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus} = props;
   const [...filmsArray] = props.films;
+
+  if (id > filmsArray.length) {
+    return <NotFound></NotFound>;
+  }
+
   const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
   useEffect(() => {
@@ -62,7 +69,14 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {authorizationStatus && <Link className="btn movie-card__button" to={
+                  {
+                    pathname: `/films/:` + id + `/review`,
+                  }
+                }>
+                Add review
+                </Link>
+                }
               </div>
             </div>
           </div>
@@ -154,11 +168,13 @@ Film.propTypes = {
   isCommentsLoaded: PropTypes.bool,
   onCommentsLoad: PropTypes.func,
   comments: PropTypes.arrayOf(PropTypes.object),
+  authorizationStatus: PropTypes.string,
 };
 
-const mapStateToProps = ({DATA}) => ({
+const mapStateToProps = ({DATA, USER}) => ({
   comments: DATA.comments,
   isCommentsLoaded: DATA.isCommentsLoaded,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

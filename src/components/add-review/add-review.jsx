@@ -44,7 +44,7 @@ const AddReview = (props) => {
             <img src={previewImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
         </div>
-        <AddReviewForm></AddReviewForm>
+        <AddReviewForm/>
       </section>
     </React.Fragment>
   );
