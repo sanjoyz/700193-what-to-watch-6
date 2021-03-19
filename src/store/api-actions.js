@@ -6,9 +6,9 @@ export const fetchFilmsList = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.getFilmsList(data)))
 );
 
-export const fetchFilmComments = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.COMMENTS)
-    .then(({data}) => dispatch(ActionCreator.getFilmsList(data)))
+export const fetchFilmComments = (id) => (dispatch, _getState, api) => (
+  api.get(APIRoute.COMMENTS + `/` + id)
+  .then(({data}) => dispatch(ActionCreator.getFilmComments(data)))
 );
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (

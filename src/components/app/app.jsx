@@ -16,7 +16,7 @@ import {AppRoute} from '../../const';
 import browserHistory from '../../browser-history';
 
 const App = (props) => {
-  const {films, reviews, promoFilm, onLoadData, isDataLoaded} = props;
+  const {films, promoFilm, onLoadData, isDataLoaded} = props;
 
   useEffect(() => {
     if (!isDataLoaded) {
@@ -47,7 +47,8 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList films = {films}/>
         </Route>
-        <Route exact path="/films/:id" component={(route) => <Film route={route} reviews={reviews} films={films}/>}/>
+        <Route exact path="/films/:id" component={(route) => <Film route={route} films={films}/>}/>
+
         <Route exact path="/films/:id/review">
           <AddReview/>
         </Route>
@@ -66,15 +67,13 @@ App.propTypes = {
   promoFilm: PropTypes.object,
   onLoadData: PropTypes.func,
   isDataLoaded: PropTypes.bool,
-  reviews: PropTypes.array,
+  comments: PropTypes.array,
 };
 
 const mapStateToProps = ({DATA}) => ({
   films: DATA.films,
   promoFilm: DATA.promoFilm,
   isDataLoaded: DATA.isDataLoaded,
-  reviews: DATA.reviews,
-  movieCardsCount: DATA.MOVIE_CARD_DEFAULT_COUNT,
 });
 
 const mapDispatchToProps = (dispatch) => ({
