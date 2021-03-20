@@ -4,6 +4,7 @@ export const ActionType = {
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
   GET_FILM_COMMENTS: `data/getFilmComments`,
+  POST_REVIEW: `data/postFilmReview`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`
 };
@@ -36,5 +37,9 @@ export const ActionCreator = {
   redirectToRoute: (route) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     value: route
+  }),
+  pushReview: (review) => ({
+    type: ActionType.POST_REVIEW,
+    value: review
   })
 };

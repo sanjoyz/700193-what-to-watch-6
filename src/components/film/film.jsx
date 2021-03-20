@@ -72,6 +72,7 @@ const Film = (props) => {
                 {authorizationStatus && <Link className="btn movie-card__button" to={
                   {
                     pathname: `/films/:` + id + `/review`,
+                    state: currentFilm
                   }
                 }>
                 Add review

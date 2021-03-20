@@ -26,3 +26,9 @@ export const signIn = ({login: email, password}) => (dispatch, _getState, api) =
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN)))
 );
+
+export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.COMMENTS + `/` + id, {rating, comment})
+    .then((result) => dispatch(ActionCreator.pushReview(result.data)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
+);

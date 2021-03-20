@@ -22,6 +22,11 @@ const filmsData = (state = initState, action) => {
         comments: action.value,
         isCommentsLoaded: true
       };
+    case ActionType.POST_REVIEW:
+      return {
+        ...state,
+        review: action.value,
+      };
   }
   return state;
 };
