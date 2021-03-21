@@ -47,11 +47,11 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList films = {films}/>
         </Route>
-        <Route exact path="/films/:id" component={(route) => <Film route={route} films={films}/>}/>
-        <Route exact path="/films/:id/review" component={(route) => <AddReview route={route}/>}/>
-        <Route exact path="/player/:id">
-          <Player film={films[0]}/>
-        </Route>
+        <Route exact path={AppRoute.FILMS + `/:id`} component={(route) => <Film route={route} films={films}/>}/>
+        <Route exact path={AppRoute.FILMS + `/:id/review`} component={(route) => <AddReview route={route}/>}/>
+        <Route exact path={AppRoute.PLAYER + `/:id`} component={(route) => <Player films={films} route={route}/>}/>
+
+
         <Route>
           <NotFound/>
         </Route>

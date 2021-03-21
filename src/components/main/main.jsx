@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
+import {Link} from 'react-router-dom';
 
 const Main = (props) => {
-
   const {films, promoFilm} = props;
   return (
     <React.Fragment>
@@ -39,18 +39,21 @@ const Main = (props) => {
                 <span className="movie-card__year">{promoFilm.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width={19} height={19}>
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <Link to={{pathname: `/player/:` + promoFilm.id}}>
+                  <button className="btn btn--play movie-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width={19} height={19}>
+                      <use xlinkHref="#play-s" />
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                 </button>
+
               </div>
             </div>
           </div>
