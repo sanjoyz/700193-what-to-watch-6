@@ -1,14 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
-
+import {fetchFilmComments} from '../../store/api-actions';
+import {connect} from 'react-redux';
+import NotFound from '../not-found/not-found';
+import {Link} from 'react-router-dom';
 const Film = (props) => {
-
-  // самое изящное решение в моей жизни, но нет времени объяснять
   const id = props.route.match.params.id.slice(1);
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus} = props;
   const [...filmsArray] = props.films;
+
+  if (id > filmsArray.length) {
+    return <NotFound></NotFound>;
+  }
+
   const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
+  useEffect(() => {
+    if (!isCommentsLoaded) {
+      onCommentsLoad(id);
+    }
+  }, [isCommentsLoaded]);
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -56,7 +69,15 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {authorizationStatus && <Link className="btn movie-card__button" to={
+                  {
+                    pathname: `/films/:` + id + `/review`,
+                    state: currentFilm
+                  }
+                }>
+                Add review
+                </Link>
+                }
               </div>
             </div>
           </div>
@@ -69,7 +90,7 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs film = {currentFilm}/>
+              <Tabs film = {currentFilm} comments={comments}/>
             </div>
           </div>
         </div>
@@ -144,8 +165,25 @@ Film.propTypes = {
         id: PropTypes.string.isRequired
       })
     }),
-  })
-
+  }),
+  isCommentsLoaded: PropTypes.bool,
+  onCommentsLoad: PropTypes.func,
+  comments: PropTypes.arrayOf(PropTypes.object),
+  authorizationStatus: PropTypes.string,
 };
 
-export default Film;
+const mapStateToProps = ({DATA, USER}) => ({
+  comments: DATA.comments,
+  isCommentsLoaded: DATA.isCommentsLoaded,
+  authorizationStatus: USER.authorizationStatus,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCommentsLoad(id) {
+    dispatch(fetchFilmComments(id));
+  }
+});
+
+
+export {Film};
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

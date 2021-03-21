@@ -1,14 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddReviewForm from '../add-review-form/add-review-form';
+import {useRef, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {postReview} from '../../store/api-actions';
+import {useHistory} from 'react-router-dom';
 const AddReview = (props) => {
-  const {name, previewImage} = props;
+  const film = props.route.location.state;
+  const id = props.route.match.params.id.slice(1);
+  const [reviewForm, setReviewForm] = useState({
+    rating: 1,
+    text: ``,
+  });
+  const ratingRef = useRef();
+  const commentRef = useRef();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(postReview({
+      rating: ratingRef.current.value,
+      comment: commentRef.current.value,
+      id,
+    }));
+    history.push(`/films/:1`);
+  };
+
+  const handleFieldChange = (evt) => {
+    const {name, value} = evt.target;
+    setReviewForm({...reviewForm, [name]: value});
+  };
+
+  const ratingStars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src={previewImage} alt={name} />
+            <img src={film.background_image} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +55,7 @@ const AddReview = (props) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">{name}</a>
+                  <a href="movie-page.html" className="breadcrumbs__link">{film.name}</a>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -41,18 +71,51 @@ const AddReview = (props) => {
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src={previewImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={film.preview_image} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
         </div>
-        <AddReviewForm></AddReviewForm>
+        <div className="add-review">
+          <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+            <div className="rating">
+              <div className="rating__stars">
+                {ratingStars.map((star) => {
+                  return ([
+                    <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>,
+                    <label className="rating__label" key={star + Math.random()} htmlFor={`star-` + star}>{`Rating ` + star}</label>
+                  ]
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="add-review__text">
+              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={commentRef} onChange={handleFieldChange}></textarea>
+              <div className="add-review__submit">
+                <button className="add-review__btn" type="submit">Post</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
       </section>
     </React.Fragment>
   );
 };
 
 AddReview.propTypes = {
-  name: PropTypes.string,
+  filmName: PropTypes.string,
   previewImage: PropTypes.string,
+  onReviewSubmit: PropTypes.func,
+  route: PropTypes.shape({
+    location: PropTypes.shape({
+      state: PropTypes.object,
+    }),
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        id: PropTypes.string.isRequired
+      })
+    }),
+  }),
 };
 
 export default AddReview;

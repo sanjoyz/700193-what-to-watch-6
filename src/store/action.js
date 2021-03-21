@@ -1,10 +1,12 @@
 export const ActionType = {
   CHANGE_GENRE: `filter/changeGenre`,
+  FILTER_FILMS: `filter/`,
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
-  FILTER_FILMS: `filter/`,
+  GET_FILM_COMMENTS: `data/getFilmComments`,
+  POST_REVIEW: `data/postFilmReview`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
-  REDIRECT_TO_ROUTE: `main/redirectToRoute`
+  REDIRECT_TO_ROUTE: `user/redirectToRoute`
 };
 
 export const ActionCreator = {
@@ -24,6 +26,10 @@ export const ActionCreator = {
     type: ActionType.GET_PROMO_FILM,
     value
   }),
+  getFilmComments: (value) => ({
+    type: ActionType.GET_FILM_COMMENTS,
+    value
+  }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRE_AUTHORIZATION,
     value: status,
@@ -31,5 +37,9 @@ export const ActionCreator = {
   redirectToRoute: (route) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     value: route
+  }),
+  pushReview: (review) => ({
+    type: ActionType.POST_REVIEW,
+    value: review
   })
 };

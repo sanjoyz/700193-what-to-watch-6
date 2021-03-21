@@ -6,9 +6,9 @@ export const fetchFilmsList = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(ActionCreator.getFilmsList(data)))
 );
 
-export const fetchFilmComments = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.COMMENTS)
-    .then(({data}) => dispatch(ActionCreator.getFilmsList(data)))
+export const fetchFilmComments = (id) => (dispatch, _getState, api) => (
+  api.get(APIRoute.COMMENTS + `/` + id)
+  .then(({data}) => dispatch(ActionCreator.getFilmComments(data)))
 );
 
 export const fetchPromoFilm = () => (dispatch, _getState, api) => (
@@ -25,4 +25,10 @@ export const signIn = ({login: email, password}) => (dispatch, _getState, api) =
   api.post(APIRoute.LOGIN, {email, password})
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN)))
+);
+
+export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.COMMENTS + `/` + id, {rating, comment})
+    .then((result) => dispatch(ActionCreator.pushReview(result.data)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
 );
