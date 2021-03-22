@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
-import {fetchFilmComments} from '../../store/api-actions';
+import {fetchFilmComments, postFavorite} from '../../store/api-actions';
 import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
 import {Link} from 'react-router-dom';
 const Film = (props) => {
   const id = props.route.match.params.id.slice(1);
-  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus} = props;
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
   const [...filmsArray] = props.films;
 
   if (id > filmsArray.length) {
@@ -65,7 +65,7 @@ const Film = (props) => {
                     <span>Play</span>
                   </button>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, 0)} type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -172,6 +172,7 @@ Film.propTypes = {
   onCommentsLoad: PropTypes.func,
   comments: PropTypes.arrayOf(PropTypes.object),
   authorizationStatus: PropTypes.string,
+  onMyListAdd: PropTypes.func,
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
@@ -183,6 +184,9 @@ const mapStateToProps = ({DATA, USER}) => ({
 const mapDispatchToProps = (dispatch) => ({
   onCommentsLoad(id) {
     dispatch(fetchFilmComments(id));
+  },
+  onMyListAdd(id, favoriteStatus) {
+    dispatch(postFavorite(id, favoriteStatus));
   }
 });
 

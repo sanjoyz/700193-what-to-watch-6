@@ -32,3 +32,10 @@ export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) 
     .then((result) => dispatch(ActionCreator.pushReview(result.data)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
 );
+
+export const postFavorite = ({id, status}) => (dispatch, _getState, api) => {
+  debugger;
+  api.post(APIRoute.FAVORITE + `/` + 1 + `/` + 1, {status})
+    .then((result) => dispatch(ActionCreator.pushFavorite(result.data)));
+// .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
+};
