@@ -37,7 +37,7 @@ export const postFavorite = (id, status) => (dispatch, _getState, api) => {
   api.post(APIRoute.FAVORITE + `/` + id + `/` + status);
 };
 
-export const getFavorites = () => (dispatch, _getState, api) => {
+export const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
   api.get(APIRoute.FAVORITE)
     .then((result) => dispatch(ActionCreator.getFavorite(result.data)));
 };

@@ -1,12 +1,10 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getFavorites} from '../../store/api-actions';
 
 const MyList = (props) => {
-  const {favoriteFilms, loadFavorites} = props;
-  loadFavorites();
+  const {favoriteFilms} = props;
+
   return (
     <React.Fragment>
       <div className="user-page">
@@ -64,18 +62,9 @@ const MyList = (props) => {
 MyList.propTypes = {
   films: PropTypes.array,
   favoriteFilms: PropTypes.object,
+  isFavoriteFilmsLoaded: PropTypes.bool,
+  loadFavorites: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  favoriteFilms: DATA.favoriteFilms,
-});
+export default MyList;
 
-const mapDispatchToProps = (dispatch) => ({
-  loadFavorites() {
-    debugger;
-    dispatch(getFavorites());
-  }
-});
-
-export {MyList};
-export default connect(mapStateToProps, mapDispatchToProps)(MyList);

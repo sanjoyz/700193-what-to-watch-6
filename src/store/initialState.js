@@ -3,5 +3,6 @@ const initState = {
   films: [],
   promoFilm: {},
   isDataLoaded: false,
+  isFavoriteFilmsLoaded: false
 };
 export default initState;
