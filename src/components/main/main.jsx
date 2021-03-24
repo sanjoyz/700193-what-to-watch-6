@@ -21,9 +21,12 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
+
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
+              <Link to={{pathname: `/mylist`}}>
+                <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
+              </Link>
             </div>
           </div>
         </header>

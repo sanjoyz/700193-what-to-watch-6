@@ -4,6 +4,7 @@ export const ActionType = {
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
   GET_FILM_COMMENTS: `data/getFilmComments`,
+  GET_FAVORITES: `data/Favorites`,
   POST_REVIEW: `data/postFilmReview`,
   POST_FAVORITE: `data/postFavorite`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
@@ -46,5 +47,9 @@ export const ActionCreator = {
   pushFavorite: (film) => ({
     type: ActionType.POST_FAVORITE,
     value: film.is_favorite ? 0 : 1
-  })
+  }),
+  getFavorite: (favorites) => ({
+    type: ActionType.GET_FAVORITES,
+    value: favorites
+  }),
 };
