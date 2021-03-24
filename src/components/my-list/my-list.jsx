@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
 
 const MyList = (props) => {
   const {favoriteFilms} = props;
+  useEffect(() => {
 
+  }, [favoriteFilms]);
   return (
     <React.Fragment>
       <div className="user-page">
