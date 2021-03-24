@@ -185,7 +185,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFilmComments(id));
   },
   onMyListAdd(id, favoriteStatus) {
-    debugger;
     dispatch(postFavorite(id, favoriteStatus));
   }
 });
