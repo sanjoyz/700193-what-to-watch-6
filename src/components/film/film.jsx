@@ -64,7 +64,7 @@ const Film = (props) => {
                     <span>Play</span>
                   </button>
                 </Link>
-                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, 1)} type="button">
+                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, currentFilm.is_favorite === true ? 0 : 1)} type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -185,6 +185,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFilmComments(id));
   },
   onMyListAdd(id, favoriteStatus) {
+    debugger;
     dispatch(postFavorite(id, favoriteStatus));
   }
 });
