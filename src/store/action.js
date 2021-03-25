@@ -44,9 +44,9 @@ export const ActionCreator = {
     type: ActionType.POST_REVIEW,
     value: review
   }),
-  pushFavorite: (film) => ({
+  postFavorite: (film) => ({
     type: ActionType.POST_FAVORITE,
-    value: film.is_favorite ? 0 : 1
+    value: film
   }),
   getFavorite: (favorites) => ({
     type: ActionType.GET_FAVORITES,

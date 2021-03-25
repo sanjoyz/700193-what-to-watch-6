@@ -33,6 +33,11 @@ const filmsData = (state = initState, action) => {
         ...state,
         review: action.value,
       };
+    case ActionType.POST_FAVORITE:
+      return {
+        ...state,
+        favoriteFilms: action.value
+      };
   }
   return state;
 };
