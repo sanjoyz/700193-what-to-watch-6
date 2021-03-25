@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
 import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {postFavorite} from '../../store/api-actions';
 
 const Main = (props) => {
   const {films, promoFilm} = props;
+  const dispatch = useDispatch();
+  const onMyListAdd = (id, status) => {
+    dispatch(postFavorite(id, status));
+  };
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -50,7 +56,7 @@ const Main = (props) => {
                     <span>Play</span>
                   </button>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(promoFilm.id, promoFilm.is_favorite === true ? 0 : 1)} type="button">
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>

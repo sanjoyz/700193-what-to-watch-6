@@ -32,7 +32,7 @@ const MyList = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            {favoriteFilms.map((film) => (
+            {favoriteFilms && favoriteFilms.map((film) => (
               <MovieCard
                 key={film.id}
                 previewImage={film.preview_image}
