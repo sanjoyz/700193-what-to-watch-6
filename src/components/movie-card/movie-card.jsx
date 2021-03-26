@@ -13,6 +13,7 @@ const MovieCard = (props) => {
 
   return (
     <React.Fragment>
+
       <article className="small-movie-card catalog__movies-card"
         onMouseOver={() => {
           setFocused(id);
@@ -21,23 +22,17 @@ const MovieCard = (props) => {
           setFocused(null);
         }}
       >
-        {focusedCard !== null
-          ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>
-          : <div className="small-movie-card__image">
-            <img src={previewImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175}/>
-          </div>
-        }
-        <h3 className="small-movie-card__title">
-          <Link className="small-movie-card__link" to={
-            {
-              pathname: `/films/:` + id,
-              // search: `:id` + id
-            }
-          }>
-            {name}
-          </Link>
-        </h3>
+        <Link className="small-movie-card__link" to={{pathname: `/films/:` + id}}>
+          {focusedCard !== null
+            ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>
+            : <div className="small-movie-card__image">
+              <img src={previewImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175}/>
+            </div>
+          }
+          <h3 className="small-movie-card__title">{name}</h3>
+        </Link>
       </article>
+
     </React.Fragment>
   );
 };

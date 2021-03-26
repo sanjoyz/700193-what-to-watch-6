@@ -4,7 +4,9 @@ export const ActionType = {
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
   GET_FILM_COMMENTS: `data/getFilmComments`,
+  GET_FAVORITES: `data/Favorites`,
   POST_REVIEW: `data/postFilmReview`,
+  POST_FAVORITE: `data/postFavorite`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
   REDIRECT_TO_ROUTE: `user/redirectToRoute`
 };
@@ -41,5 +43,13 @@ export const ActionCreator = {
   pushReview: (review) => ({
     type: ActionType.POST_REVIEW,
     value: review
-  })
+  }),
+  postFavorite: (film) => ({
+    type: ActionType.POST_FAVORITE,
+    value: film
+  }),
+  getFavorite: (favorites) => ({
+    type: ActionType.GET_FAVORITES,
+    value: favorites
+  }),
 };

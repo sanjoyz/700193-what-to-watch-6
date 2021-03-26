@@ -9,14 +9,14 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import {connect} from 'react-redux';
-import {fetchFilmsList, fetchPromoFilm} from '../../store/api-actions';
+import {fetchFilmsList, fetchPromoFilm, fetchFavoriteFilms} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 import {AppRoute} from '../../const';
 import browserHistory from '../../browser-history';
 
 const App = (props) => {
-  const {films, promoFilm, onLoadData, isDataLoaded} = props;
+  const {films, favoriteFilms, promoFilm, onLoadData, isDataLoaded} = props;
 
   useEffect(() => {
     if (!isDataLoaded) {
@@ -45,13 +45,13 @@ const App = (props) => {
           <SignIn/>
         </Route>
         <Route exact path="/mylist">
-          <MyList films = {films}/>
+          <MyList films = {films} favoriteFilms={favoriteFilms}/>
         </Route>
-        <Route exact path="/films/:id" component={(route) => <Film route={route} films={films}/>}/>
-        <Route exact path="/films/:id/review" component={(route) => <AddReview route={route}/>}/>
-        <Route exact path="/player/:id">
-          <Player film={films[0]}/>
-        </Route>
+        <Route exact path={AppRoute.FILMS + `/:id`} component={(route) => <Film route={route} films={films}/>}/>
+        <Route exact path={AppRoute.FILMS + `/:id/review`} component={(route) => <AddReview route={route}/>}/>
+        <Route exact path={AppRoute.PLAYER + `/:id`} component={(route) => <Player films={films} route={route}/>}/>
+
+
         <Route>
           <NotFound/>
         </Route>
@@ -61,6 +61,7 @@ const App = (props) => {
 };
 App.propTypes = {
   films: PropTypes.array,
+  favoriteFilms: PropTypes.array,
   promoFilm: PropTypes.object,
   onLoadData: PropTypes.func,
   isDataLoaded: PropTypes.bool,
@@ -71,12 +72,14 @@ const mapStateToProps = ({DATA}) => ({
   films: DATA.films,
   promoFilm: DATA.promoFilm,
   isDataLoaded: DATA.isDataLoaded,
+  favoriteFilms: DATA.favoriteFilms,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadData() {
     dispatch(fetchFilmsList());
     dispatch(fetchPromoFilm());
+    dispatch(fetchFavoriteFilms());
   }
 });
 

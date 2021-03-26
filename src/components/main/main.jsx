@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {postFavorite} from '../../store/api-actions';
 
 const Main = (props) => {
-
   const {films, promoFilm} = props;
+  const dispatch = useDispatch();
+  const onMyListAdd = (id, status) => {
+    dispatch(postFavorite(id, status));
+  };
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -21,9 +27,12 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
+
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
+              <Link to={{pathname: `/mylist`}}>
+                <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
+              </Link>
             </div>
           </div>
         </header>
@@ -39,18 +48,21 @@ const Main = (props) => {
                 <span className="movie-card__year">{promoFilm.released}</span>
               </p>
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width={19} height={19}>
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <Link to={{pathname: `/player/:` + promoFilm.id}}>
+                  <button className="btn btn--play movie-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width={19} height={19}>
+                      <use xlinkHref="#play-s" />
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
+                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(promoFilm.id, promoFilm.is_favorite === true ? 0 : 1)} type="button">
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                 </button>
+
               </div>
             </div>
           </div>

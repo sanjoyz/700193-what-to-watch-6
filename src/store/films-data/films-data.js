@@ -22,10 +22,21 @@ const filmsData = (state = initState, action) => {
         comments: action.value,
         isCommentsLoaded: true
       };
+    case ActionType.GET_FAVORITES:
+      return {
+        ...state,
+        favoriteFilms: action.value,
+        isFavoriteFilmsLoaded: true
+      };
     case ActionType.POST_REVIEW:
       return {
         ...state,
         review: action.value,
+      };
+    case ActionType.POST_FAVORITE:
+      return {
+        ...state,
+        favoriteFilms: action.value
       };
   }
   return state;

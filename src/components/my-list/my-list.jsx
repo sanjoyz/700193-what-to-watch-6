@@ -3,7 +3,8 @@ import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
 
 const MyList = (props) => {
-  const {films} = props;
+  const {favoriteFilms} = props;
+
   return (
     <React.Fragment>
       <div className="user-page">
@@ -29,7 +30,7 @@ const MyList = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            {films.map((film) => (
+            {favoriteFilms && favoriteFilms.map((film) => (
               <MovieCard
                 key={film.id}
                 previewImage={film.preview_image}
@@ -59,7 +60,11 @@ const MyList = (props) => {
   );
 };
 MyList.propTypes = {
-  films: PropTypes.array
+  films: PropTypes.array,
+  favoriteFilms: PropTypes.object,
+  isFavoriteFilmsLoaded: PropTypes.bool,
+  loadFavorites: PropTypes.func,
 };
 
 export default MyList;
+

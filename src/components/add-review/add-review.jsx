@@ -23,7 +23,7 @@ const AddReview = (props) => {
       comment: commentRef.current.value,
       id,
     }));
-    history.push(`/films/:1`);
+    history.push(`/films/:` + id);
   };
 
   const handleFieldChange = (evt) => {

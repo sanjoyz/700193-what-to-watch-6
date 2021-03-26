@@ -32,3 +32,13 @@ export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) 
     .then((result) => dispatch(ActionCreator.pushReview(result.data)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
 );
+
+export const postFavorite = (id, status) => (dispatch, _getState, api) => {
+  api.post(APIRoute.FAVORITE + `/` + id + `/` + status)
+    .then((result) => dispatch(ActionCreator.postFavorite(result.data)));
+};
+
+export const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
+  api.get(APIRoute.FAVORITE)
+    .then((result) => dispatch(ActionCreator.getFavorite(result.data)));
+};

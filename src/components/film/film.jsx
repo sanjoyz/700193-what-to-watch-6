@@ -1,20 +1,19 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
-import {fetchFilmComments} from '../../store/api-actions';
+import {fetchFilmComments, postFavorite} from '../../store/api-actions';
 import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
 import {Link} from 'react-router-dom';
 const Film = (props) => {
-  const id = props.route.match.params.id.slice(1);
-  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus} = props;
+  const id = parseInt(props.route.match.params.id.slice(1), 10);
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
   const [...filmsArray] = props.films;
 
   if (id > filmsArray.length) {
     return <NotFound></NotFound>;
   }
-
-  const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
+  const filter = filmsArray.filter((film) => (film.id === id));
   const currentFilm = filter[0];
   useEffect(() => {
     if (!isCommentsLoaded) {
@@ -43,7 +42,9 @@ const Film = (props) => {
 
             <div className="user-block">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <Link to={{pathname: `/mylist`}}>
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </Link>
               </div>
             </div>
           </header>
@@ -57,13 +58,15 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <Link to={{pathname: `/player/:` + currentFilm.id}}>
+                  <button className="btn btn--play movie-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width={19} height={19}>
+                      <use xlinkHref="#play-s" />
+                    </svg>
+                    <span>Play</span>
+                  </button>
+                </Link>
+                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, currentFilm.is_favorite === true ? 0 : 1)} type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -170,6 +173,7 @@ Film.propTypes = {
   onCommentsLoad: PropTypes.func,
   comments: PropTypes.arrayOf(PropTypes.object),
   authorizationStatus: PropTypes.string,
+  onMyListAdd: PropTypes.func,
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
@@ -181,6 +185,9 @@ const mapStateToProps = ({DATA, USER}) => ({
 const mapDispatchToProps = (dispatch) => ({
   onCommentsLoad(id) {
     dispatch(fetchFilmComments(id));
+  },
+  onMyListAdd(id, favoriteStatus) {
+    dispatch(postFavorite(id, favoriteStatus));
   }
 });
 
