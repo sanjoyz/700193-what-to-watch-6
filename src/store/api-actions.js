@@ -7,7 +7,7 @@ export const fetchFilmsList = () => (dispatch, _getState, api) => (
 );
 
 export const fetchFilmComments = (id) => (dispatch, _getState, api) => (
-  api.get(APIRoute.COMMENTS + `/` + id)
+  api.get(`${APIRoute.COMMENTS}/${id}`)
   .then(({data}) => dispatch(ActionCreator.getFilmComments(data)))
 );
 
@@ -28,13 +28,13 @@ export const signIn = ({login: email, password}) => (dispatch, _getState, api) =
 );
 
 export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) => (
-  api.post(APIRoute.COMMENTS + `/` + id, {rating, comment})
+  api.post(`${APIRoute.COMMENTS}/${id}`, {rating, comment})
     .then((result) => dispatch(ActionCreator.pushReview(result.data)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
 );
 
 export const postFavorite = (id, status) => (dispatch, _getState, api) => {
-  api.post(APIRoute.FAVORITE + `/` + id + `/` + status)
+  api.post(`${APIRoute.FAVORITE}/${id}/${status}`)
     .then((result) => dispatch(ActionCreator.postFavorite(result.data)));
 };
 
