@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
 import {useDispatch} from 'react-redux';
@@ -11,22 +11,24 @@ const GenreList = (props) => {
 
   });
   const genresArr = Array.from(genresSet);
+  const [checkedGenre, setCheckedGenre] = useState(`All genres`);
   const dispatch = useDispatch();
   const onGenreChange = (evt) => {
     evt.preventDefault();
+    setCheckedGenre(evt.target.innerText);
     dispatch(ActionCreator.filterFilms(evt));
   };
 
   return (
     <React.Fragment>
       <ul className="catalog__genres-list">
-        <li className="catalog__genres-item catalog__genres-item--active">
+        <li className={`catalog__genres-item ${checkedGenre === `All genres` ? `catalog__genres-item--active` : ``}`}>
           <a href="#" onClick={onGenreChange} className="catalog__genres-link">All genres</a>
         </li>
         {genresArr.map((genre, index) => {
           return (
             index < 9 ?
-              <li key={genre + Math.random()} className="catalog__genres-item">
+              <li key={genre + Math.random()} className={`catalog__genres-item ${checkedGenre === genre ? `catalog__genres-item--active` : ``}`}>
                 <a href="#" onClick={onGenreChange} className="catalog__genres-link">{genre}</a>
               </li>
               : ``
