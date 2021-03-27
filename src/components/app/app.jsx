@@ -28,7 +28,6 @@ const App = (props) => {
       <LoadingScreen/>
     );
   }
-
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -41,17 +40,28 @@ const App = (props) => {
             );
           }}
         />
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignIn/>
         </Route>
-        <Route exact path="/mylist">
-          <MyList films = {films} favoriteFilms={favoriteFilms}/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MYLIST}
+          render={() => {
+            return (
+              <MyList films = {films} favoriteFilms={favoriteFilms}/>
+            );
+          }}
+        />
         <Route exact path={AppRoute.FILMS + `/:id`} component={(route) => <Film route={route} films={films}/>}/>
-        <Route exact path={AppRoute.FILMS + `/:id/review`} component={(route) => <AddReview route={route}/>}/>
-        <Route exact path={AppRoute.PLAYER + `/:id`} component={(route) => <Player films={films} route={route}/>}/>
-
-
+        <PrivateRoute
+          exact
+          path={`${AppRoute.FILMS}/:id/review`}
+          render={(route) => {
+            return (
+              <AddReview route={route}/>
+            );
+          }}/>
+        <Route exact path={`${AppRoute.PLAYER}/:id`} component={(route) => <Player films={films} route={route}/>}/>
         <Route>
           <NotFound/>
         </Route>
