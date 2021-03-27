@@ -4,6 +4,7 @@ import {useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {postReview} from '../../store/api-actions';
 import {useHistory} from 'react-router-dom';
+import {TEXT_AREA} from '../../const';
 const AddReview = (props) => {
   const film = props.route.location.state;
   const id = props.route.match.params.id.slice(1);
@@ -89,7 +90,7 @@ const AddReview = (props) => {
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={commentRef} onChange={handleFieldChange}></textarea>
+              <textarea className="add-review__textarea" name="review-text" id="review-text" minLength={TEXT_AREA.minLength} maxLength={TEXT_AREA.maxLength} placeholder="Review text" ref={commentRef} onChange={handleFieldChange}></textarea>
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit">Post</button>
               </div>

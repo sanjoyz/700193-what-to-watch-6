@@ -58,3 +58,7 @@ export const getFilmTextRating = (rating) => {
 };
 
 export const SHOW_FILMS_STEP = 8;
+export const TEXT_AREA = {
+  minLength: `50`,
+  maxLength: `400`
+};
