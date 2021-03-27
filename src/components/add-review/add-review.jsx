@@ -20,11 +20,17 @@ const AddReview = (props) => {
   // const [isInputValid, setInputValid] = useState(false);
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    const form = document.querySelector(`form`);
+    const btn = form.querySelector(`input[type=submit], button[type=submit]`);
+    const textArea = form.querySelector(`textarea`);
+    textArea.disabled = true;
+    btn.disabled = true;
     dispatch(postReview({
       rating: ratingRef.current.value,
       comment: commentRef.current.value,
       id,
     }));
+
     history.push(`/films/:` + id);
   };
 
