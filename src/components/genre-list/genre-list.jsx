@@ -35,7 +35,6 @@ GenreList.propTypes = {
 };
 
 const mapStateToProps = ({DATA}) => ({
-  genre: DATA.genre,
   films: DATA.films
 });
 

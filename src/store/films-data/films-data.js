@@ -36,8 +36,24 @@ const filmsData = (state = initState, action) => {
     case ActionType.POST_FAVORITE:
       return {
         ...state,
-        favoriteFilms: [state.favoriteFilms, action.value]
+        favoriteFilms: action.value
       };
+    case ActionType.CHANGE_GENRE:
+      return {
+        ...state,
+        genre: action.value.target.innerText
+      };
+    case ActionType.FILTER_FILMS:
+      if (action.value.target.innerText === `All genres`) {
+        return {...state,
+          filteredFilms: state.films
+        };
+      } else {
+        return {
+          ...state,
+          filteredFilms: state.films.filter((e) => (e.genre === action.value.target.innerText))
+        };
+      }
   }
   return state;
 };
