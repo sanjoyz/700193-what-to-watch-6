@@ -17,7 +17,6 @@ const AddReview = (props) => {
   const commentRef = useRef();
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [isInputValid, setInputValid] = useState(false);
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const form = document.querySelector(`form`);
@@ -25,11 +24,16 @@ const AddReview = (props) => {
     const textArea = form.querySelector(`textarea`);
     textArea.disabled = true;
     btn.disabled = true;
-    dispatch(postReview({
-      rating: ratingRef.current.value,
-      comment: commentRef.current.value,
-      id,
-    }));
+    try {
+      dispatch(postReview({
+        rating: ratingRef.current.value,
+        comment: commentRef.current.value,
+        id,
+      }));
+    } catch (error) {
+      textArea.textContent = error;
+    }
+
 
     history.push(`/films/:` + id);
   };
