@@ -8,6 +8,7 @@ const GenreList = (props) => {
   const genresSet = new Set();
   films.forEach((film) => {
     genresSet.add(film.genre);
+
   });
   const genresArr = Array.from(genresSet);
 
@@ -17,11 +18,13 @@ const GenreList = (props) => {
         <li className="catalog__genres-item catalog__genres-item--active">
           <a href="#" onClick={onGenreChange} className="catalog__genres-link">All genres</a>
         </li>
-        {genresArr.map((genre) => {
+        {genresArr.map((genre, index) => {
           return (
-            <li key={genre + Math.random()} className="catalog__genres-item">
-              <a href="#" onClick={onGenreChange} className="catalog__genres-link">{genre}</a>
-            </li>
+            index < 9 ?
+              <li key={genre + Math.random()} className="catalog__genres-item">
+                <a href="#" onClick={onGenreChange} className="catalog__genres-link">{genre}</a>
+              </li>
+              : ``
           );
         })}
       </ul>
