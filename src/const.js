@@ -26,4 +26,29 @@ export const getTimeFromMins = (mins) => {
   return hours + `h ` + minutes + `m`;
 };
 
+export const getFilmTextRating = (rating) => {
+  let textRating = ``;
+  switch (true) {
+    case (rating < 3) :
+      textRating = `Bad`;
+      break;
+    case (rating >= 3 && rating < 5):
+      textRating = `Normal`;
+      break;
+    case (rating >= 5 && rating < 8):
+      textRating = `Good`;
+      break;
+    case (rating >= 8 && rating < 10):
+      textRating = `Very good`;
+      break;
+    case (rating === 10):
+      textRating = `Awesome`;
+      break;
+    default:
+      textRating = `Not enough rates`;
+      break;
+  }
+  return textRating;
+};
+
 export const SHOW_FILMS_STEP = 8;
