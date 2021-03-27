@@ -4,7 +4,7 @@ import Tabs from '../tabs/tabs';
 import {fetchFilmComments, postFavorite} from '../../store/api-actions';
 import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 const Film = (props) => {
   const id = parseInt(props.route.match.params.id.slice(1), 10);
   const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
@@ -58,14 +58,16 @@ const Film = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={{pathname: `/player/:` + currentFilm.id}}>
-                  <button className="btn btn--play movie-card__button" type="button">
+
+                <button className="btn btn--play movie-card__button" type="button">
+                  <NavLink to={{pathname: `/player/:` + currentFilm.id}} style={{color: `#eee5b5`, textDecoration: `none`}}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
                       <use xlinkHref="#play-s" />
                     </svg>
                     <span>Play</span>
-                  </button>
-                </Link>
+                  </NavLink>
+                </button>
+
                 <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, currentFilm.is_favorite === true ? 0 : 1)} type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
