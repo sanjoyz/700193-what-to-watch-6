@@ -75,7 +75,7 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                {authorizationStatus && <Link className="btn movie-card__button" to={
+                {authorizationStatus === `AUTH` && <Link className="btn movie-card__button" to={
                   {
                     pathname: `/films/:` + id + `/review`,
                     state: currentFilm
