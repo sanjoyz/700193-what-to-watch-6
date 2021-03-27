@@ -26,6 +26,12 @@ export const getTimeFromMins = (mins) => {
   return hours + `h ` + minutes + `m`;
 };
 
+export const getSimilarFilms = (films, genre) => {
+  return films.filter((film) => {
+    return film.genre === genre;
+  });
+};
+
 export const getFilmTextRating = (rating) => {
   let textRating = ``;
   switch (true) {

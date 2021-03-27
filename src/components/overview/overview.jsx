@@ -14,7 +14,7 @@ const Overview = (props) => {
       </div>
       <div className="movie-card__text">
         <p>{film.description}</p>
-        <p className="movie-card__director"><strong>{film.director}</strong></p>
+        <p className="movie-card__director"><strong>Director: {film.director}</strong></p>
         <p className="movie-card__starring"><strong>Starring: {film.starring.join(`, `)} and other</strong></p>
       </div>
     </React.Fragment>
