@@ -8,7 +8,8 @@ export const ActionType = {
   POST_REVIEW: `data/postFilmReview`,
   POST_FAVORITE: `data/postFavorite`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,
-  REDIRECT_TO_ROUTE: `user/redirectToRoute`
+  REDIRECT_TO_ROUTE: `user/redirectToRoute`,
+  GET_USER: `user/getUser`,
 };
 
 export const ActionCreator = {
@@ -31,6 +32,10 @@ export const ActionCreator = {
   getFilmComments: (value) => ({
     type: ActionType.GET_FILM_COMMENTS,
     value
+  }),
+  getUser: (user) => ({
+    type: ActionType.GET_USER,
+    value: user
   }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRE_AUTHORIZATION,

@@ -6,9 +6,10 @@ import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
 import {Link, NavLink} from 'react-router-dom';
 import MoreLikeThis from '../more-like-this/more-like-this';
+import {AppRoute, AuthorizationStatus} from '../../const';
 const Film = (props) => {
   const id = parseInt(props.route.match.params.id.slice(1), 10);
-  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd, userInfo} = props;
   const [...filmsArray] = props.films;
 
   if (id > filmsArray.length) {
@@ -42,11 +43,19 @@ const Film = (props) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <Link to={{pathname: `/mylist`}}>
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              {authorizationStatus === AuthorizationStatus.AUTH &&
+                <div className="user-block__avatar">
+                  <Link to={{pathname: AppRoute.MYLIST}}>
+                    <img src={userInfo.avatar_url} alt={userInfo.name} width="63" height="63" />
+                  </Link>
+                </div>
+              }
+              {
+                authorizationStatus === AuthorizationStatus.NO_AUTH &&
+                <Link to={{pathname: AppRoute.LOGIN}} className={`user-block__link`}>
+                  Sign in
                 </Link>
-              </div>
+              }
             </div>
           </header>
 
@@ -136,12 +145,14 @@ Film.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.object),
   authorizationStatus: PropTypes.string,
   onMyListAdd: PropTypes.func,
+  userInfo: PropTypes.object,
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
   comments: DATA.comments,
   isCommentsLoaded: DATA.isCommentsLoaded,
   authorizationStatus: USER.authorizationStatus,
+  userInfo: USER.userInfo
 });
 
 const mapDispatchToProps = (dispatch) => ({

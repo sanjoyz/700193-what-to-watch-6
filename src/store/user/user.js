@@ -9,6 +9,11 @@ const user = (state = initState, action) => {
         ...state,
         authorizationStatus: action.value
       };
+    case ActionType.GET_USER:
+      return {
+        ...state,
+        userInfo: action.value
+      };
   }
   return state;
 };
