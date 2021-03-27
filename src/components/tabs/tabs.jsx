@@ -6,18 +6,18 @@ import FilmReviews from '../film-reviews/films-reviews';
 
 const Tabs = (props) => {
   const {film, comments} = props;
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(`Overview`);
   const navClickHandler = (evt) => {
     evt.preventDefault();
     switch (evt.target.text) {
       case `Overview`:
-        setTab(1);
+        setTab(`Overview`);
         break;
       case `Details`:
-        setTab(2);
+        setTab(`Details`);
         break;
       case `Reviews`:
-        setTab(3);
+        setTab(`Reviews`);
         break;
     }
   };
@@ -26,20 +26,20 @@ const Tabs = (props) => {
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            <li className={`movie-nav__item ${tab === 1 ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === `Overview` ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Overview</a>
             </li>
-            <li className={`movie-nav__item ${tab === 2 ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === `Details` ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Details</a>
             </li>
-            <li className={`movie-nav__item ${tab === 3 ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === `Reviews` ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Reviews</a>
             </li>
           </ul>
         </nav>
-        {tab === 1 && <Overview film={film}/>}
-        {tab === 2 && <Details film={film}/>}
-        {tab === 3 && <FilmReviews comments={comments}/>}
+        {tab === `Overview` && <Overview film={film}/>}
+        {tab === `Details` && <Details film={film}/>}
+        {tab === `Reviews` && <FilmReviews comments={comments}/>}
       </div>
 
     </React.Fragment>
