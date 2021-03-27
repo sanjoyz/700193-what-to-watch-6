@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 const GenreList = (props) => {
-  const {films, onGenreChange} = props;
+  const {films} = props;
   const genresSet = new Set();
   films.forEach((film) => {
     genresSet.add(film.genre);
 
   });
   const genresArr = Array.from(genresSet);
+  const dispatch = useDispatch();
+  const onGenreChange = (evt) => {
+    evt.preventDefault();
+    dispatch(ActionCreator.filterFilms(evt));
+  };
 
   return (
     <React.Fragment>
@@ -37,17 +42,5 @@ GenreList.propTypes = {
   onGenreChange: PropTypes.func
 };
 
-const mapStateToProps = ({DATA}) => ({
-  films: DATA.films
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreChange(genre) {
-    dispatch(ActionCreator.filterFilms(genre));
-  }
-});
-
-export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
-
+export default GenreList;
 
