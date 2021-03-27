@@ -37,7 +37,7 @@ const FilmList = (props) => {
           })
         }
       </div>
-      <ShowMore films={films} showMoreHanlder={() => setShownFilms((prevValue) => prevValue + SHOW_FILMS_STEP)} filmsShown={shownFilms}/>
+      <ShowMore films={filteredFilms.length > 0 ? filteredFilms : films} showMoreHanlder={() => setShownFilms((prevValue) => prevValue + SHOW_FILMS_STEP)} filmsShown={shownFilms}/>
 
     </React.Fragment>
   );
