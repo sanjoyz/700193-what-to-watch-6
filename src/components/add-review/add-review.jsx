@@ -9,14 +9,15 @@ const AddReview = (props) => {
   const film = props.route.location.state;
   const id = props.route.match.params.id.slice(1);
   const [reviewForm, setReviewForm] = useState({
-    rating: 1,
-    text: ``,
+    "rating": 1,
+    "review-text": ``,
+    "isInputValid": false
   });
   const ratingRef = useRef();
   const commentRef = useRef();
   const history = useHistory();
   const dispatch = useDispatch();
-
+  // const [isInputValid, setInputValid] = useState(false);
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(postReview({
@@ -29,9 +30,10 @@ const AddReview = (props) => {
 
   const handleFieldChange = (evt) => {
     const {name, value} = evt.target;
-    setReviewForm({...reviewForm, [name]: value});
+    setReviewForm({...reviewForm,
+      [name]: value,
+      isInputValid: reviewForm.rating && (reviewForm[`review-text`].length > TEXT_AREA.minLength && reviewForm[`review-text`].length < TEXT_AREA.maxLength) ? true : false});
   };
-
   const ratingStars = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -90,9 +92,9 @@ const AddReview = (props) => {
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" minLength={TEXT_AREA.minLength} maxLength={TEXT_AREA.maxLength} placeholder="Review text" ref={commentRef} onChange={handleFieldChange}></textarea>
+              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={commentRef} onChange={handleFieldChange}></textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                <button disabled={!reviewForm.isInputValid} className="add-review__btn" type="submit">Post</button>
               </div>
 
             </div>
