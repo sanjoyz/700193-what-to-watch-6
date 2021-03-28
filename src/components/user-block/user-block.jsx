@@ -3,7 +3,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {login} from '../../store/api-actions';
 
 const UserBlock = (props) => {
 
@@ -41,11 +40,6 @@ const mapStateToProps = ({USER}) => ({
   userInfo: USER.userInfo,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onUserLoad() {
-    dispatch(login());
-  }
-});
 export {UserBlock};
-export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);
+export default connect(mapStateToProps, null)(UserBlock);
 

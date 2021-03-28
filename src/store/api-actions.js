@@ -16,10 +16,11 @@ export const fetchPromoFilm = () => (dispatch, _getState, api) => (
       .then(({data}) => dispatch(ActionCreator.getPromoFilm(data)))
 );
 
-export const login = () => (dispatch, _getState, api) => (
+export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((authInfo) => dispatch(ActionCreator.getUser(authInfo.data)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .catch(() => {})
 );
 
 export const signIn = ({login: email, password}) => (dispatch, _getState, api) => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
@@ -13,6 +13,7 @@ const Main = (props) => {
   const onMyListAdd = (id, status) => {
     dispatch(postFavorite(id, status));
   };
+  const [isInFavorite, setIsInFavorite] = useState(promoFilm.is_favorite);
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -50,13 +51,20 @@ const Main = (props) => {
                     <span>Play</span>
                   </NavLink>
                 </button>
-                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(promoFilm.id, promoFilm.is_favorite === true ? 0 : 1)} type="button">
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
+                <button className="btn btn--list movie-card__button" onClick={() => {
+                  onMyListAdd(promoFilm.id, promoFilm.is_favorite === true ? 0 : 1);
+                  setIsInFavorite(promoFilm.is_favorite === true ? false : true);
+                }} type="button">
+                  {isInFavorite ? <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
                   </svg>
+                    :
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
-
               </div>
             </div>
           </div>

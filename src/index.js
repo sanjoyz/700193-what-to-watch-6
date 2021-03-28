@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import {createAPI} from './api';
 import {ActionCreator} from './store/action';
 import {AuthorizationStatus} from './const';
-import {login} from './store/api-actions';
+import {checkAuth} from './store/api-actions';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -20,7 +20,7 @@ const store = createStore(
     )
 );
 
-store.dispatch(login());
+store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
