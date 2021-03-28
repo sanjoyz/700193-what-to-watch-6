@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
-import {fetchFilmComments, postFavorite} from '../../store/api-actions';
+import {fetchFavoriteFilms, fetchFilmComments, fetchFilmsList, postFavorite} from '../../store/api-actions';
 import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
 import {Link, NavLink} from 'react-router-dom';
@@ -17,11 +17,12 @@ const Film = (props) => {
   }
   const filter = filmsArray.filter((film) => (film.id === id));
   const currentFilm = filter[0];
+  const [isInFavorite, setFavorite] = useState(currentFilm.is_favorite);
   useEffect(() => {
     if (!isCommentsLoaded) {
       onCommentsLoad(id);
     }
-  }, [isCommentsLoaded]);
+  }, [isCommentsLoaded, filmsArray]);
 
   return (
     <React.Fragment>
@@ -63,11 +64,20 @@ const Film = (props) => {
                   </NavLink>
                 </button>
 
-                <button className="btn btn--list movie-card__button" onClick={() => onMyListAdd(id, currentFilm.is_favorite === true ? 0 : 1)} type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                <button className="btn btn--list movie-card__button" onClick={() => {
+                  onMyListAdd(id, currentFilm.is_favorite === true ? 0 : 1);
+                  setFavorite(currentFilm.is_favorite === true ? false : true);
+                }} type="button">
+                  {isInFavorite ? <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
                   </svg>
+                    :
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  }
                   <span>My list</span>
+
                 </button>
                 {authorizationStatus === `AUTH` && <Link className="btn movie-card__button" to={
                   {
@@ -131,11 +141,14 @@ Film.propTypes = {
   authorizationStatus: PropTypes.string,
   onMyListAdd: PropTypes.func,
   userInfo: PropTypes.object,
+  favoriteFilms: PropTypes.array,
+  getFavoriteFilms: PropTypes.func,
 };
 
 const mapStateToProps = ({DATA, USER}) => ({
   comments: DATA.comments,
   isCommentsLoaded: DATA.isCommentsLoaded,
+  favoriteFilms: DATA.favoriteFilms,
   authorizationStatus: USER.authorizationStatus,
   userInfo: USER.userInfo
 });
@@ -146,6 +159,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onMyListAdd(id, favoriteStatus) {
     dispatch(postFavorite(id, favoriteStatus));
+    dispatch(fetchFilmsList());
+  },
+  getFavoriteFilms() {
+    dispatch(fetchFavoriteFilms());
   }
 });
 
