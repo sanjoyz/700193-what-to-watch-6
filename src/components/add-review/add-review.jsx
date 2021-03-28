@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {postReview} from '../../store/api-actions';
-import {useHistory} from 'react-router-dom';
-import {TEXT_AREA} from '../../const';
+import {NavLink, useHistory} from 'react-router-dom';
+import {AppRoute, TEXT_AREA} from '../../const';
+import UserBlock from '../user-block/user-block';
 const AddReview = (props) => {
   const film = props.route.location.state;
   const id = props.route.match.params.id.slice(1);
@@ -58,17 +59,19 @@ const AddReview = (props) => {
 
           <header className="page-header">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <NavLink to={{pathname: AppRoute.MAIN}} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </NavLink>
             </div>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">{film.name}</a>
+                  <NavLink to={{pathname: `${AppRoute.FILMS}/:${film.id}`}}className={`breadcrumbs__link`}>
+                    {film.name}
+                  </NavLink>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -76,11 +79,7 @@ const AddReview = (props) => {
               </ul>
             </nav>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock/>
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
