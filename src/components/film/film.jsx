@@ -7,6 +7,7 @@ import NotFound from '../not-found/not-found';
 import {Link, NavLink} from 'react-router-dom';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import UserBlock from '../user-block/user-block';
+import {AppRoute} from '../../const';
 const Film = (props) => {
   const id = parseInt(props.route.match.params.id.slice(1), 10);
   const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
@@ -36,11 +37,11 @@ const Film = (props) => {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <NavLink to={{pathname: AppRoute.MAIN}} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </NavLink>
             </div>
             <UserBlock/>
           </header>

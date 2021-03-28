@@ -1,5 +1,4 @@
 import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {signIn} from '../../store/api-actions';
 import {useHistory} from 'react-router-dom';
@@ -68,10 +67,6 @@ const SignIn = () => {
       </div>
     </React.Fragment>
   );
-};
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SignIn;

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 const Player = (props) => {
@@ -7,8 +7,7 @@ const Player = (props) => {
   const film = filmsArray.filter((f) => (f.id === parseInt(id, 10)))[0];
   const videoLink = film.video_link;
   const poster = film.background_image;
-
-
+  const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
     const player = document.querySelector(`.player__video`);
     const playButton = document.querySelector(`.player__play`);
@@ -16,7 +15,6 @@ const Player = (props) => {
     const progressTime = document.querySelector(`.player__time-value`);
     const progress = document.querySelector(`.player__progress`);
     const progressToggler = document.querySelector(`.player__toggler`);
-
     const togglePlayback = (p) => p.paused ? p.play() : p.pause();
     const progressUpdate = () => {
       progressTime.textContent = new Date((player.duration - player.currentTime) * 1000).toISOString().substr(11, 8);
@@ -26,12 +24,13 @@ const Player = (props) => {
       progressToggler.style.left = (100 * player.currentTime / player.duration) + `%`;
       progressUpdate();
     });
-    playButton.addEventListener(`click`, () => togglePlayback(player));
+    playButton.addEventListener(`click`, () => {
+      togglePlayback(player);
+      setIsPlaying((prevState) => !prevState);
+    });
     fullScreenButton.addEventListener(`click`, () => player.requestFullscreen());
-  });
+  }, []);
 
-  // film.run_time
-  // new Date(113 * 1000).toISOString().substr(11, 8)
   return (
     <React.Fragment>
       <div className="player">
@@ -53,9 +52,14 @@ const Player = (props) => {
           </div>
           <div className="player__controls-row">
             <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width={19} height={19}>
-                <use xlinkHref="#play-s" />
-              </svg>
+              {isPlaying ?
+                <svg viewBox="0 0 14 21" width={14} height={21}>
+                  <use xlinkHref="#pause"></use>
+                </svg>
+                : <svg viewBox="0 0 19 19" width={19} height={19}>
+                  <use xlinkHref="#play-s" />
+                </svg>
+              }
               <span>Play</span>
             </button>
             <div className="player__name">Transpotting</div>
