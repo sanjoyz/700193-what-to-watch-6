@@ -10,13 +10,16 @@ import {createAPI} from './api';
 import {ActionCreator} from './store/action';
 import {AuthorizationStatus} from './const';
 import {checkAuth} from './store/api-actions';
+import {redirect} from './store/middleware/redirect';
 
 const api = createAPI(
     () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
 );
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
 
