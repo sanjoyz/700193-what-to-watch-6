@@ -44,10 +44,10 @@ describe(`Reducers for films data work correctly `, () => {
   });
   it(`Reducer should post favorite`, () => {
     const action = {
-      value: {favoriteFilm: `film`},
+      value: {favoriteFilm: `filmssss`},
       type: ActionType.POST_FAVORITE
     };
-    expect(filmsData({favoriteFilms: {}}, action)).toEqual({favoriteFilms: [{}, action.value]});
+    expect(filmsData({favoriteFilms: {}}, action)).toEqual({favoriteFilms: action.value});
   });
 
 
