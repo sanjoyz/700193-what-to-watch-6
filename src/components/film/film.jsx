@@ -6,10 +6,10 @@ import {connect} from 'react-redux';
 import NotFound from '../not-found/not-found';
 import {Link, NavLink} from 'react-router-dom';
 import MoreLikeThis from '../more-like-this/more-like-this';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import UserBlock from '../user-block/user-block';
 const Film = (props) => {
   const id = parseInt(props.route.match.params.id.slice(1), 10);
-  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd, userInfo} = props;
+  const {isCommentsLoaded, onCommentsLoad, comments, authorizationStatus, onMyListAdd} = props;
   const [...filmsArray] = props.films;
 
   if (id > filmsArray.length) {
@@ -41,22 +41,7 @@ const Film = (props) => {
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
             </div>
-
-            <div className="user-block">
-              {authorizationStatus === AuthorizationStatus.AUTH &&
-                <div className="user-block__avatar">
-                  <Link to={{pathname: AppRoute.MYLIST}}>
-                    <img src={userInfo.avatar_url} alt={userInfo.name} width="63" height="63" />
-                  </Link>
-                </div>
-              }
-              {
-                authorizationStatus === AuthorizationStatus.NO_AUTH &&
-                <Link to={{pathname: AppRoute.LOGIN}} className={`user-block__link`}>
-                  Sign in
-                </Link>
-              }
-            </div>
+            <UserBlock/>
           </header>
 
           <div className="movie-card__wrap">

@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {postFavorite} from '../../store/api-actions';
+import UserBlock from '../user-block/user-block';
 
 const Main = (props) => {
   const {films, promoFilm} = props;
@@ -27,14 +28,7 @@ const Main = (props) => {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <Link to={{pathname: `/mylist`}}>
-                <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-              </Link>
-            </div>
-          </div>
+          <UserBlock/>
         </header>
         <div className="movie-card__wrap">
           <div className="movie-card__info">

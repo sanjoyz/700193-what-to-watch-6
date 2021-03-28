@@ -1,7 +1,7 @@
 import {ActionType} from '../action';
 import {AuthorizationStatus} from '../../const';
 
-const initState = {authorizationStatus: AuthorizationStatus.NO_AUTH};
+const initState = {authorizationStatus: AuthorizationStatus.NO_AUTH, isUserLoaded: false};
 const user = (state = initState, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
@@ -12,7 +12,8 @@ const user = (state = initState, action) => {
     case ActionType.GET_USER:
       return {
         ...state,
-        userInfo: action.value
+        userInfo: action.value,
+        isUserLoaded: true
       };
   }
   return state;
