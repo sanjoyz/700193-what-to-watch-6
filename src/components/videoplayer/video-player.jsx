@@ -6,7 +6,7 @@ const VideoPlayer = (props) => {
 
   return (
     <React.Fragment>
-      <video width={width} height={height} src={videoLink} muted autoPlay className="player__video" ></video>
+      <video width={width} height={height} src={videoLink} muted autoPlay></video>
     </React.Fragment>
   );
 
@@ -17,8 +17,6 @@ VideoPlayer.propTypes = {
   posterImage: PropTypes.string,
   height: PropTypes.number,
   width: PropTypes.number,
-  isAutoPlay: PropTypes.bool
-
 };
 
 export default VideoPlayer;

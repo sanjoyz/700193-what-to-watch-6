@@ -2,33 +2,41 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import VideoPlayer from '../videoplayer/video-player';
+import {useDispatch} from 'react-redux';
+import {fetchFilmsList} from '../../store/api-actions';
 
 const MovieCard = (props) => {
 
   const {name, previewImage, posterImage, videoLink, id} = props;
-  const [focusedCard, setFocused] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
-    // тут какой то код, но какой если итак работает
+    if (!id) {
+      dispatch(fetchFilmsList());
+    }
   }, [id]);
-
+  const [focusedCard, setFocused] = useState(null);
+  let timer;
   return (
     <React.Fragment>
 
       <article className="small-movie-card catalog__movies-card"
         onMouseOver={() => {
-          setFocused(id);
+          timer = setTimeout(() => {
+            setFocused(id);
+          }, 1000);
+
         }}
         onMouseLeave={() => {
           setFocused(null);
+          clearTimeout(timer);
         }}
-      >
-        <Link className="small-movie-card__link" to={{pathname: `/films/:` + id}}>
-          {focusedCard !== null
-            ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>
-            : <div className="small-movie-card__image">
-              <img src={previewImage} alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175}/>
-            </div>
-          }
+      > <Link className="small-movie-card__link" to={{pathname: `/films/:` + id}}>
+          <div className="small-movie-card__image">
+            {focusedCard !== null
+              ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>
+              : <img src={previewImage} alt={name} width={280} height={175}/>
+            }
+          </div>
           <h3 className="small-movie-card__title">{name}</h3>
         </Link>
       </article>

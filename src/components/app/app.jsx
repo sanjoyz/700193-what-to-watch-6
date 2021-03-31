@@ -31,18 +31,14 @@ const App = (props) => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        <PrivateRoute
-          exact
-          path={AppRoute.MAIN}
-          render={() => {
-            return (
-              <Main films={films} promoFilm={promoFilm}/>
-            );
-          }}
-        />
+        <Route exact path={AppRoute.MAIN}>
+          <Main films={films} promoFilm={promoFilm}/>
+        </Route>
+
         <Route exact path={AppRoute.LOGIN}>
           <SignIn/>
         </Route>
+
         <PrivateRoute
           exact
           path={AppRoute.MYLIST}
@@ -52,7 +48,9 @@ const App = (props) => {
             );
           }}
         />
+
         <Route exact path={AppRoute.FILMS + `/:id`} component={(route) => <Film route={route} films={films}/>}/>
+
         <PrivateRoute
           exact
           path={`${AppRoute.FILMS}/:id/review`}
@@ -61,7 +59,9 @@ const App = (props) => {
               <AddReview route={route}/>
             );
           }}/>
+
         <Route exact path={`${AppRoute.PLAYER}/:id`} component={(route) => <Player films={films} route={route}/>}/>
+
         <Route>
           <NotFound/>
         </Route>
@@ -71,11 +71,10 @@ const App = (props) => {
 };
 App.propTypes = {
   films: PropTypes.array,
-  favoriteFilms: PropTypes.array,
+  favoriteFilms: PropTypes.arrayOf(PropTypes.object),
   promoFilm: PropTypes.object,
   onLoadData: PropTypes.func,
   isDataLoaded: PropTypes.bool,
-  comments: PropTypes.array,
 };
 
 const mapStateToProps = ({DATA}) => ({

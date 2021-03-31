@@ -49,7 +49,7 @@ const AddReview = (props) => {
 
   return (
     <React.Fragment>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: film.background_color}}>
         <div className="movie-card__header">
           <div className="movie-card__bg">
             <img src={film.background_image} alt={film.name} />

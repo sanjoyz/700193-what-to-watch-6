@@ -21,12 +21,12 @@ describe(`Reducers for films data work correctly `, () => {
     };
     expect(filmsData({promoFilm: {}}, action)).toEqual({promoFilm: action.value});
   });
-  it(`Reducer should return film comments and update isCommetsLoaded status`, () => {
+  it(`Reducer should return film reviews and update isCommetsLoaded status`, () => {
     const action = {
       value: [{id: 1, user: {id: 13, name: `Chelovek`}, rating: 1.4, comment: `very interesting opinion`, date: `2021-03-07T08:04:28.658Z`}],
-      type: ActionType.GET_FILM_COMMENTS
+      type: ActionType.GET_FILM_REVIEWS
     };
-    expect(filmsData({comments: [], isCommentsLoaded: false}, action)).toEqual({comments: action.value, isCommentsLoaded: true});
+    expect(filmsData({reviews: [], isReviewsLoaded: false}, action)).toEqual({reviews: action.value, isReviewsLoaded: true});
   });
   it(`Reducer should return favorites and update isFavoritesLoaded status`, () => {
     const action = {

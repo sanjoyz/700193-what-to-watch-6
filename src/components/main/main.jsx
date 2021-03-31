@@ -1,19 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import GenreList from '../genre-list/genre-list';
-import {NavLink} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {postFavorite} from '../../store/api-actions';
 import UserBlock from '../user-block/user-block';
+import FilmButtons from '../film-buttons/film-buttons';
 
 const Main = (props) => {
   const {films, promoFilm} = props;
-  const dispatch = useDispatch();
-  const onMyListAdd = (id, status) => {
-    dispatch(postFavorite(id, status));
-  };
-  const [isInFavorite, setIsInFavorite] = useState(promoFilm.is_favorite);
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -42,30 +35,7 @@ const Main = (props) => {
                 <span className="movie-card__genre">{promoFilm.genre}</span>
                 <span className="movie-card__year">{promoFilm.released}</span>
               </p>
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <NavLink to={{pathname: `/player/:` + promoFilm.id}} style={{color: `#eee5b5`, textDecoration: `none`}}>
-                    <svg viewBox="0 0 19 19" width={19} height={19}>
-                      <use xlinkHref="#play-s" />
-                    </svg>
-                    <span>Play</span>
-                  </NavLink>
-                </button>
-                <button className="btn btn--list movie-card__button" onClick={() => {
-                  onMyListAdd(promoFilm.id, promoFilm.is_favorite === true ? 0 : 1);
-                  setIsInFavorite(promoFilm.is_favorite === true ? false : true);
-                }} type="button">
-                  {isInFavorite ? <svg viewBox="0 0 18 14" width="18" height="14">
-                    <use xlinkHref="#in-list"></use>
-                  </svg>
-                    :
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                  }
-                  <span>My list</span>
-                </button>
-              </div>
+              <FilmButtons film={promoFilm}/>
             </div>
           </div>
         </div>

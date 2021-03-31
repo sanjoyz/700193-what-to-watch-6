@@ -4,8 +4,10 @@ import Overview from '../overview/overview';
 import Details from '../details/details';
 import FilmReviews from '../film-reviews/films-reviews';
 
+
 const Tabs = (props) => {
-  const {film, comments} = props;
+  const {film} = props;
+
   const [tab, setTab] = useState(`Overview`);
   const navClickHandler = (evt) => {
     evt.preventDefault();
@@ -39,7 +41,7 @@ const Tabs = (props) => {
         </nav>
         {tab === `Overview` && <Overview film={film}/>}
         {tab === `Details` && <Details film={film}/>}
-        {tab === `Reviews` && <FilmReviews comments={comments}/>}
+        {tab === `Reviews` && <FilmReviews/>}
       </div>
 
     </React.Fragment>
@@ -49,6 +51,5 @@ const Tabs = (props) => {
 
 Tabs.propTypes = {
   film: PropTypes.object,
-  comments: PropTypes.arrayOf(PropTypes.object),
 };
 export default Tabs;

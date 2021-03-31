@@ -16,11 +16,11 @@ const filmsData = (state = initState, action) => {
         ...state,
         promoFilm: action.value,
       };
-    case ActionType.GET_FILM_COMMENTS:
+    case ActionType.GET_FILM_REVIEWS:
       return {
         ...state,
-        comments: action.value,
-        isCommentsLoaded: true
+        reviews: action.value,
+        isReviewsLoaded: true
       };
     case ActionType.GET_FAVORITES:
       return {

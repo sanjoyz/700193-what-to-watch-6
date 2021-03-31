@@ -1,7 +1,8 @@
 import React, {useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../store/api-actions';
-import {useHistory} from 'react-router-dom';
+import {NavLink, Redirect, useHistory} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus} from '../../const';
 const SignIn = () => {
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -18,16 +19,21 @@ const SignIn = () => {
     history.push(`/`);
   };
 
+  const authorizationStatus = useSelector(({USER}) => USER.authorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
+    return <Redirect to={AppRoute.MAIN} />;
+  }
   return (
     <React.Fragment>
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <NavLink to={{pathname: AppRoute.MAIN}} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </NavLink>
           </div>
 
           <h1 className="page-title user-page__title">Sign in</h1>

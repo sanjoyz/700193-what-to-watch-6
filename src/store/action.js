@@ -3,7 +3,7 @@ export const ActionType = {
   FILTER_FILMS: `filter/`,
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
-  GET_FILM_COMMENTS: `data/getFilmComments`,
+  GET_FILM_REVIEWS: `data/getFilmReviews`,
   GET_FAVORITES: `data/Favorites`,
   POST_REVIEW: `data/postFilmReview`,
   POST_FAVORITE: `data/postFavorite`,
@@ -29,8 +29,8 @@ export const ActionCreator = {
     type: ActionType.GET_PROMO_FILM,
     value
   }),
-  getFilmComments: (value) => ({
-    type: ActionType.GET_FILM_COMMENTS,
+  getFilmReviews: (value) => ({
+    type: ActionType.GET_FILM_REVIEWS,
     value
   }),
   getUser: (user) => ({
