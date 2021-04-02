@@ -6,6 +6,8 @@ import {postReview} from '../../store/api-actions';
 import {NavLink, useHistory, useParams} from 'react-router-dom';
 import {AppRoute, TEXT_AREA} from '../../const';
 import UserBlock from '../user-block/user-block';
+
+
 const AddReview = (props) => {
   const film = props.route.location.state;
   const {id} = useParams();
@@ -91,10 +93,11 @@ const AddReview = (props) => {
             <div className="rating">
               <div className="rating__stars">
                 {ratingStars.map((star) => {
-                  return ([
-                    <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>,
-                    <label className="rating__label" key={star + Math.random()} htmlFor={`star-` + star}>{`Rating ` + star}</label>
-                  ]
+                  return (
+                    <>
+                      <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>,
+                      <label className="rating__label" key={star + Math.random()} htmlFor={`star-` + star}>{`Rating ` + star}</label>
+                    </>
                   );
                 })}
               </div>
