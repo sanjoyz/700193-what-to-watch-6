@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link, useParams} from 'react-router-dom';
+import {AppRoute} from '../../const';
 const Player = (props) => {
   const {id} = useParams();
   const [...filmsArray] = props.films;
@@ -37,7 +38,7 @@ const Player = (props) => {
         <video src={videoLink} className="player__video" poster={poster}/>
         <Link to= {
           {
-            pathname: `/films/:` + id
+            pathname: `${AppRoute.FILMS}/${id}`
           }
         }>
           <button type="button" className="player__exit">Exit</button>

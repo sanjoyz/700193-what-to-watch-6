@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import VideoPlayer from '../videoplayer/video-player';
 import {useDispatch} from 'react-redux';
 import {fetchFilmsList} from '../../store/api-actions';
+import {AppRoute} from '../../const';
 
 const MovieCard = (props) => {
 
@@ -30,7 +31,7 @@ const MovieCard = (props) => {
           setFocused(null);
           clearTimeout(timer);
         }}
-      > <Link className="small-movie-card__link" to={{pathname: `/films/:` + id}}>
+      > <Link className="small-movie-card__link" to={{pathname: `${AppRoute.FILMS}/${id}`}}>
           <div className="small-movie-card__image">
             {focusedCard !== null
               ? <VideoPlayer posterImage={posterImage} videoLink={videoLink} width={280} height={175}/>

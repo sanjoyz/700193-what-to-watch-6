@@ -27,7 +27,7 @@ const FilmButtons = (props) => {
       <div className="movie-card__buttons">
 
         <button className="btn btn--play movie-card__button" type="button">
-          <NavLink to={{pathname: `/player/:` + film.id}} style={{color: `#eee5b5`, textDecoration: `none`}}>
+          <NavLink to={{pathname: `/player/` + film.id}} style={{color: `#eee5b5`, textDecoration: `none`}}>
             <svg viewBox="0 0 19 19" width={19} height={19}>
               <use xlinkHref="#play-s" />
             </svg>
@@ -49,7 +49,7 @@ const FilmButtons = (props) => {
 
         {authorizationStatus === AuthorizationStatus.AUTH && <Link className="btn movie-card__button" to={
           {
-            pathname: `${AppRoute.FILMS}/:${film.id}/review`,
+            pathname: `${AppRoute.FILMS}/${film.id}/review`,
             state: film
           }
         }>Add review

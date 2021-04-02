@@ -49,7 +49,7 @@ const App = (props) => {
           }}
         />
 
-        <Route exact path={AppRoute.FILMS + `/:id`} component={(route) => <Film route={route} films={films}/>}/>
+        <Route exact path={`${AppRoute.FILMS}/:id`} component={(route) => <Film route={route} films={films}/>}/>
 
         <PrivateRoute
           exact

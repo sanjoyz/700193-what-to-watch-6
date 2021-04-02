@@ -36,7 +36,7 @@ const AddReview = (props) => {
     }
 
 
-    history.push(`/films/` + id);
+    history.push(`${AppRoute.FILMS}/{id}`);
   };
 
   const handleFieldChange = (evt) => {
@@ -69,7 +69,7 @@ const AddReview = (props) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <NavLink to={{pathname: `${AppRoute.FILMS}/:${film.id}`}}className={`breadcrumbs__link`}>
+                  <NavLink to={{pathname: `${AppRoute.FILMS}/${film.id}`}}className={`breadcrumbs__link`}>
                     {film.name}
                   </NavLink>
                 </li>
