@@ -36,7 +36,7 @@ const filmsData = (state = initState, action) => {
     case ActionType.POST_FAVORITE:
       return {
         ...state,
-        favoriteFilms: action.value
+        newFavorite: action.value
       };
     case ActionType.CHANGE_GENRE:
       return {

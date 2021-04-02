@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {checkAuth} from '../../store/api-actions';
+import {checkAuth, fetchFavoriteFilms} from '../../store/api-actions';
 
 
 const UserBlock = (props) => {
@@ -13,12 +13,13 @@ const UserBlock = (props) => {
       checkAuth();
     }
   }, [userInfo]);
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <div className="user-block">
         {authorizationStatus === AuthorizationStatus.AUTH &&
                 <div className="user-block__avatar">
-                  <Link to={{pathname: AppRoute.MYLIST}}>
+                  <Link to={{pathname: AppRoute.MYLIST}} onClick={() => dispatch(fetchFavoriteFilms())}>
                     <img src={userInfo.avatar_url} alt={userInfo.name} width="63" height="63" />
                   </Link>
                 </div>

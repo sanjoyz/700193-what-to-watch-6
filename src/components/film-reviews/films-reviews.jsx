@@ -85,7 +85,6 @@ const FilmReviews = () => {
 FilmReviews.propTypes = {
   film: PropTypes.object,
   reviews: PropTypes.arrayOf(PropTypes.object),
-  onReviewsLoad: PropTypes.func.isRequired,
   isReviewsLoaded: PropTypes.bool,
 };
 

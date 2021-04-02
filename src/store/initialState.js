@@ -5,5 +5,6 @@ const initState = {
   isDataLoaded: false,
   isFavoriteFilmsLoaded: false,
   filteredFilms: [],
+  favoriteFilms: [],
 };
 export default initState;

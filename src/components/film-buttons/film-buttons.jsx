@@ -4,7 +4,7 @@ import browserHistory from '../../browser-history';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {Link, NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchFilmsList, postFavorite} from '../../store/api-actions';
+import {fetchFavoriteFilms, postFavorite} from '../../store/api-actions';
 
 
 const FilmButtons = (props) => {
@@ -12,10 +12,11 @@ const FilmButtons = (props) => {
   const [isInFavorite, setFavorite] = useState(film.is_favorite);
   const authorizationStatus = useSelector(({USER}) => USER.authorizationStatus);
   const dispatch = useDispatch();
+
   const addToFavoriteHadndler = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
       dispatch(postFavorite(film.id, film.is_favorite === true ? 0 : 1));
-      dispatch(fetchFilmsList());
+      dispatch(fetchFavoriteFilms());
       setFavorite(film.is_favorite === true ? false : true);
     } else {
       browserHistory.push(AppRoute.LOGIN);

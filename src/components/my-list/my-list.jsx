@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import UserBlock from '../user-block/user-block';
 import {NavLink} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {useSelector} from 'react-redux';
 
 
-const MyList = (props) => {
-  const {favoriteFilms} = props;
+const MyList = () => {
+  const favoriteFilms = useSelector(({DATA}) => DATA.favoriteFilms);
 
   return (
     <React.Fragment>
@@ -33,7 +34,8 @@ const MyList = (props) => {
                 previewImage={film.preview_image}
                 name={film.name}
                 id={film.id}
-                onHover = {()=>{}}
+                posterImage={film.poster_image}
+                videoLink={film.video_link}
               />
             ))}
           </div>
@@ -58,7 +60,7 @@ const MyList = (props) => {
 };
 MyList.propTypes = {
   films: PropTypes.array,
-  favoriteFilms: PropTypes.object,
+  favoriteFilms: PropTypes.array,
   isFavoriteFilmsLoaded: PropTypes.bool,
   loadFavorites: PropTypes.func,
   authorizationStatus: PropTypes.string,

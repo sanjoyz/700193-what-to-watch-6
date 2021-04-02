@@ -17,7 +17,7 @@ import browserHistory from '../../browser-history';
 
 
 const App = (props) => {
-  const {films, favoriteFilms, promoFilm, onLoadData, isDataLoaded} = props;
+  const {films, promoFilm, onLoadData, isDataLoaded} = props;
 
   useEffect(() => {
     if (!isDataLoaded) {
@@ -45,7 +45,7 @@ const App = (props) => {
           path={AppRoute.MYLIST}
           render={() => {
             return (
-              <MyList films = {films} favoriteFilms={favoriteFilms}/>
+              <MyList/>
             );
           }}
         />
@@ -82,7 +82,6 @@ const mapStateToProps = ({DATA}) => ({
   films: DATA.films,
   promoFilm: DATA.promoFilm,
   isDataLoaded: DATA.isDataLoaded,
-  favoriteFilms: DATA.favoriteFilms,
 });
 
 const mapDispatchToProps = (dispatch) => ({

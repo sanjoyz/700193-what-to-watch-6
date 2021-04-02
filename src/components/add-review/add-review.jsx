@@ -38,7 +38,7 @@ const AddReview = (props) => {
     }
 
 
-    history.push(`${AppRoute.FILMS}/{id}`);
+    history.push(`${AppRoute.FILMS}/${id}`);
   };
 
   const handleFieldChange = (evt) => {
@@ -95,7 +95,7 @@ const AddReview = (props) => {
                 {ratingStars.map((star) => {
                   return (
                     <>
-                      <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>,
+                      <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>
                       <label className="rating__label" key={star + Math.random()} htmlFor={`star-` + star}>{`Rating ` + star}</label>
                     </>
                   );

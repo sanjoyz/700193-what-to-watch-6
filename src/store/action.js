@@ -4,7 +4,7 @@ export const ActionType = {
   GET_FILMS_LIST: `data/getFilmsList`,
   GET_PROMO_FILM: `data/getPromoFilm`,
   GET_FILM_REVIEWS: `data/getFilmReviews`,
-  GET_FAVORITES: `data/Favorites`,
+  GET_FAVORITES: `data/getFavorites`,
   POST_REVIEW: `data/postFilmReview`,
   POST_FAVORITE: `data/postFavorite`,
   REQUIRE_AUTHORIZATION: `user/requireAuthorization`,

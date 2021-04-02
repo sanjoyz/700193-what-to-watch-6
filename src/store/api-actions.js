@@ -29,15 +29,20 @@ export const signIn = ({login: email, password}) => (dispatch, _getState, api) =
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN)))
 );
 
-export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) => (
+export const postReview = ({id, rating, comment}) => (dispatch, _getState, api) => {
   api.post(`${APIRoute.COMMENTS}/${id}`, {rating, comment})
-    .then((result) => dispatch(ActionCreator.pushReview(result.data)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)))
-);
+    .then((comments) => {
+      dispatch(ActionCreator.pushReview(comments.data));
+      dispatch(ActionCreator.getFilmReviews(comments.data));
+    })
+    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.FILMS + `:/` + id)));
+};
 
 export const postFavorite = (id, status) => (dispatch, _getState, api) => {
   api.post(`${APIRoute.FAVORITE}/${id}/${status}`)
-    .then((result) => dispatch(ActionCreator.postFavorite(result.data)));
+    .then((result) => {
+      dispatch(ActionCreator.postFavorite(result.data));
+    });
 };
 
 export const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
