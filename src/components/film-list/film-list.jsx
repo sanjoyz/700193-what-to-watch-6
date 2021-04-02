@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import ShowMore from '../show-more/show-more';
 import {SHOW_FILMS_STEP} from '../../const';
 
+
 const FilmList = (props) => {
   const {films, filteredFilms} = props;
   const [shownFilms, setShownFilms] = useState(SHOW_FILMS_STEP);

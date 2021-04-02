@@ -6,6 +6,7 @@ import {useDispatch} from 'react-redux';
 import {fetchFilmsList} from '../../store/api-actions';
 import {AppRoute} from '../../const';
 
+
 const MovieCard = (props) => {
 
   const {name, previewImage, posterImage, videoLink, id} = props;
@@ -19,7 +20,6 @@ const MovieCard = (props) => {
   let timer;
   return (
     <React.Fragment>
-
       <article className="small-movie-card catalog__movies-card"
         onMouseOver={() => {
           timer = setTimeout(() => {
@@ -41,7 +41,6 @@ const MovieCard = (props) => {
           <h3 className="small-movie-card__title">{name}</h3>
         </Link>
       </article>
-
     </React.Fragment>
   );
 };

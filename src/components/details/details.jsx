@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getTimeFromMins} from '../../const';
+
+
 const Details = (props) => {
   const {film} = props;
   return (

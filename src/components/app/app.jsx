@@ -15,6 +15,7 @@ import PrivateRoute from '../private-route/private-route';
 import {AppRoute} from '../../const';
 import browserHistory from '../../browser-history';
 
+
 const App = (props) => {
   const {films, favoriteFilms, promoFilm, onLoadData, isDataLoaded} = props;
 

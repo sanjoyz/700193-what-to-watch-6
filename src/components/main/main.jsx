@@ -5,6 +5,7 @@ import GenreList from '../genre-list/genre-list';
 import UserBlock from '../user-block/user-block';
 import FilmButtons from '../film-buttons/film-buttons';
 
+
 const Main = (props) => {
   const {films, promoFilm} = props;
   return (

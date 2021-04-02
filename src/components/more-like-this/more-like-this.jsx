@@ -2,6 +2,8 @@ import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
 import {getSimilarFilms} from '../../const';
+
+
 const MoreLikeThis = (props) => {
   const {films, film} = props;
   const genre = film.genre;

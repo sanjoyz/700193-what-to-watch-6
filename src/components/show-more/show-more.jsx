@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const ShowMore = (props) => {
-
   const {filmsShown, films, showMoreHanlder} = props;
-
   return (
     filmsShown >= films.length ? ` ` :
       <React.Fragment>

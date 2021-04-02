@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {checkAuth} from '../../store/api-actions';
 
-const UserBlock = (props) => {
 
+const UserBlock = (props) => {
   const {authorizationStatus, userInfo, isUserLoaded} = props;
   useEffect(() => {
     if (!isUserLoaded) {

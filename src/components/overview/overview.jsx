@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getFilmTextRating} from '../../const';
+
+
 const Overview = (props) => {
   const {film} = props;
   return (

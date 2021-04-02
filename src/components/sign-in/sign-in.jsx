@@ -3,11 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../store/api-actions';
 import {NavLink, Redirect, useHistory} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
+
+
 const SignIn = () => {
   const loginRef = useRef();
   const passwordRef = useRef();
   const history = useHistory();
-
   const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
@@ -35,7 +36,6 @@ const SignIn = () => {
               <span className="logo__letter logo__letter--3">W</span>
             </NavLink>
           </div>
-
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
 

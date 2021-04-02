@@ -5,6 +5,7 @@ import UserBlock from '../user-block/user-block';
 import {NavLink} from 'react-router-dom';
 import {AppRoute} from '../../const';
 
+
 const MyList = (props) => {
   const {favoriteFilms} = props;
 

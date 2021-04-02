@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
 import {useDispatch} from 'react-redux';
 
+
 const GenreList = (props) => {
   const {films} = props;
   const genresSet = new Set();

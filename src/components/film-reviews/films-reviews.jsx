@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 
+
 const FilmReviews = () => {
   const reviews = useSelector(({DATA}) => DATA.reviews);
 
@@ -90,4 +91,3 @@ FilmReviews.propTypes = {
 
 
 export default FilmReviews;
-// export default connect(mapStateToProps, mapDispatchToProps)(FilmReviews);

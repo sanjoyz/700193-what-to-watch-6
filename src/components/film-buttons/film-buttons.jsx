@@ -6,6 +6,7 @@ import {Link, NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchFilmsList, postFavorite} from '../../store/api-actions';
 
+
 const FilmButtons = (props) => {
   const {film} = props;
   const [isInFavorite, setFavorite] = useState(film.is_favorite);
