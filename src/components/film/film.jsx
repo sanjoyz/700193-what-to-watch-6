@@ -2,22 +2,23 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '../tabs/tabs';
 import NotFound from '../not-found/not-found';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import MoreLikeThis from '../more-like-this/more-like-this';
 import UserBlock from '../user-block/user-block';
 import {AppRoute} from '../../const';
-
 import FilmButtons from '../film-buttons/film-buttons';
 import {fetchFilmReviews} from '../../store/api-actions';
 import {useDispatch} from 'react-redux';
+
+
 const Film = (props) => {
-  const id = parseInt(props.route.match.params.id.slice(1), 10);
+  const {id} = useParams();
   const [...filmsArray] = props.films;
 
   if (id > filmsArray.length) {
     return <NotFound></NotFound>;
   }
-  const filter = filmsArray.filter((film) => (film.id === id));
+  const filter = filmsArray.filter((film) => (film.id === parseInt(id, 10)));
   const currentFilm = filter[0];
   const dispatch = useDispatch();
 

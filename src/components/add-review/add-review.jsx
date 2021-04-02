@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {postReview} from '../../store/api-actions';
-import {NavLink, useHistory} from 'react-router-dom';
+import {NavLink, useHistory, useParams} from 'react-router-dom';
 import {AppRoute, TEXT_AREA} from '../../const';
 import UserBlock from '../user-block/user-block';
 const AddReview = (props) => {
   const film = props.route.location.state;
-  const id = props.route.match.params.id.slice(1);
+  const {id} = useParams();
   const [reviewForm, setReviewForm] = useState({
     "rating": 1,
     "review-text": ``,
@@ -36,7 +36,7 @@ const AddReview = (props) => {
     }
 
 
-    history.push(`/films/:` + id);
+    history.push(`/films/` + id);
   };
 
   const handleFieldChange = (evt) => {

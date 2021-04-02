@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 const Player = (props) => {
-  const id = props.route.match.params.id.slice(1);
+  const {id} = useParams();
   const [...filmsArray] = props.films;
   const film = filmsArray.filter((f) => (f.id === parseInt(id, 10)))[0];
   const videoLink = film.video_link;
