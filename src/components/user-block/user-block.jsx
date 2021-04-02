@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
-import React, {useEffect} from 'react';
-import {connect, useDispatch} from 'react-redux';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {checkAuth, fetchFavoriteFilms} from '../../store/api-actions';
+import {fetchFavoriteFilms} from '../../store/api-actions';
 
 
-const UserBlock = (props) => {
-  const {authorizationStatus, userInfo, isUserLoaded} = props;
-  useEffect(() => {
-    if (!isUserLoaded) {
-      checkAuth();
-    }
-  }, [userInfo]);
+const UserBlock = () => {
+  const {userInfo, authorizationStatus} = useSelector(({USER}) => USER);
+
+
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -38,21 +35,7 @@ const UserBlock = (props) => {
 UserBlock.propTypes = {
   userInfo: PropTypes.object,
   authorizationStatus: PropTypes.string,
-  onUserLoad: PropTypes.func,
-  isUserLoaded: PropTypes.bool,
 };
 
-const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
-  userInfo: USER.userInfo,
-  isUserLoaded: USER.isUserLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onUserLoad() {
-    dispatch(checkAuth());
-  }
-});
-export {UserBlock};
-export default connect(mapStateToProps, mapDispatchToProps)(UserBlock);
+export default UserBlock;
 
