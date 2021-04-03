@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
 import {useDispatch} from 'react-redux';
+import {GENRE_LIST_MAX_AMOUNT} from '../../const';
 
 
 const GenreList = (props) => {
@@ -28,7 +29,7 @@ const GenreList = (props) => {
         </li>
         {genresArr.map((genre, index) => {
           return (
-            index < 9 ?
+            index < GENRE_LIST_MAX_AMOUNT ?
               <li key={genre + Math.random()} className={`catalog__genres-item ${checkedGenre === genre ? `catalog__genres-item--active` : ``}`}>
                 <a href="#" onClick={onGenreChange} className="catalog__genres-link">{genre}</a>
               </li>
@@ -41,8 +42,7 @@ const GenreList = (props) => {
 };
 
 GenreList.propTypes = {
-  films: PropTypes.array,
-  onGenreChange: PropTypes.func
+  films: PropTypes.array.isRequired,
 };
 
 export default GenreList;

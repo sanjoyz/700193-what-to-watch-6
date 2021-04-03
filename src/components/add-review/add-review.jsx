@@ -94,10 +94,10 @@ const AddReview = (props) => {
               <div className="rating__stars">
                 {ratingStars.map((star) => {
                   return (
-                    <>
-                      <input className="rating__input" key={star} id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>
-                      <label className="rating__label" key={star + Math.random()} htmlFor={`star-` + star}>{`Rating ` + star}</label>
-                    </>
+                    <React.Fragment key={star}>
+                      <input className="rating__input" id={`star-` + star} type="radio" name="rating" value={star} ref={ratingRef} onChange={handleFieldChange}/>
+                      <label className="rating__label" htmlFor={`star-` + star}>{`Rating ` + star}</label>
+                    </React.Fragment>
                   );
                 })}
               </div>
@@ -118,9 +118,6 @@ const AddReview = (props) => {
 };
 
 AddReview.propTypes = {
-  filmName: PropTypes.string,
-  previewImage: PropTypes.string,
-  onReviewSubmit: PropTypes.func,
   route: PropTypes.shape({
     location: PropTypes.shape({
       state: PropTypes.object,

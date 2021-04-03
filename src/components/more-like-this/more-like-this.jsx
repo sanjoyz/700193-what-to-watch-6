@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import PropTypes from 'prop-types';
-import {getSimilarFilms} from '../../const';
+import {MORE_LIKE_THIS_MAX_CARDS, getSimilarFilms} from '../../const';
 
 
 const MoreLikeThis = (props) => {
@@ -14,7 +14,7 @@ const MoreLikeThis = (props) => {
         <h2 className="catalog__title">More like this</h2>
         <div className="catalog__movies-list">
           {getSimilarFilms(films, genre).map((item, index) => {
-            return index < 4 ?
+            return index < MORE_LIKE_THIS_MAX_CARDS ?
               <MovieCard
                 key={item.id}
                 previewImage={item.preview_image}
@@ -32,8 +32,8 @@ const MoreLikeThis = (props) => {
 };
 
 MoreLikeThis.propTypes = {
-  film: PropTypes.object,
-  films: PropTypes.array,
+  film: PropTypes.object.isRequired,
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MoreLikeThis;

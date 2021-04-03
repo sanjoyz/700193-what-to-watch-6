@@ -57,7 +57,16 @@ export const getFilmTextRating = (rating) => {
   return textRating;
 };
 
+export const TabsEnum = {
+  DETAILS: `Details`,
+  OVERVIEW: `Overview`,
+  REVIEWS: `Reviews`,
+};
+
 export const SHOW_FILMS_STEP = 8;
+export const GENRE_LIST_MAX_AMOUNT = 9;
+export const MORE_LIKE_THIS_MAX_CARDS = 4;
+
 export const TEXT_AREA = {
   minLength: `50`,
   maxLength: `400`

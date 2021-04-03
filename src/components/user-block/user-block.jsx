@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -30,11 +29,6 @@ const UserBlock = () => {
       </div>
     </React.Fragment>
   );
-};
-
-UserBlock.propTypes = {
-  userInfo: PropTypes.object,
-  authorizationStatus: PropTypes.string,
 };
 
 export default UserBlock;

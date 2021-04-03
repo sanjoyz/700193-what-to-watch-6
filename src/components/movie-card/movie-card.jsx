@@ -42,10 +42,10 @@ const MovieCard = (props) => {
   );
 };
 MovieCard.propTypes = {
-  previewImage: PropTypes.string,
-  name: PropTypes.string,
+  previewImage: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  posterImage: PropTypes.string,
-  videoLink: PropTypes.string,
+  posterImage: PropTypes.string.isRequired,
+  videoLink: PropTypes.string.isRequired,
 };
 export default MovieCard;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 
 
@@ -80,13 +79,5 @@ const FilmReviews = () => {
     </React.Fragment>
   );
 };
-
-
-FilmReviews.propTypes = {
-  film: PropTypes.object,
-  reviews: PropTypes.arrayOf(PropTypes.object),
-  isReviewsLoaded: PropTypes.bool,
-};
-
 
 export default FilmReviews;

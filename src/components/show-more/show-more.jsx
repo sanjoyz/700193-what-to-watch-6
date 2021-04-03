@@ -17,7 +17,7 @@ const ShowMore = (props) => {
 ShowMore.propTypes = {
   filmsShown: PropTypes.number.isRequired,
   films: PropTypes.array.isRequired,
-  showMoreHanlder: PropTypes.func,
+  showMoreHanlder: PropTypes.func.isRequired,
 };
 
 export default ShowMore;

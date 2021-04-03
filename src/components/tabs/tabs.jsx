@@ -3,23 +3,23 @@ import PropTypes from 'prop-types';
 import Overview from '../overview/overview';
 import Details from '../details/details';
 import FilmReviews from '../film-reviews/films-reviews';
-
+import {TabsEnum} from '../../const';
 
 const Tabs = (props) => {
   const {film} = props;
 
-  const [tab, setTab] = useState(`Overview`);
+  const [tab, setTab] = useState(TabsEnum.OVERVIEW);
   const navClickHandler = (evt) => {
     evt.preventDefault();
     switch (evt.target.text) {
-      case `Overview`:
-        setTab(`Overview`);
+      case TabsEnum.OVERVIEW:
+        setTab(TabsEnum.OVERVIEW);
         break;
-      case `Details`:
-        setTab(`Details`);
+      case TabsEnum.DETAILS:
+        setTab(TabsEnum.DETAILS);
         break;
-      case `Reviews`:
-        setTab(`Reviews`);
+      case TabsEnum.REVIEWS:
+        setTab(TabsEnum.REVIEWS);
         break;
     }
   };
@@ -28,20 +28,20 @@ const Tabs = (props) => {
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            <li className={`movie-nav__item ${tab === `Overview` ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === TabsEnum.OVERVIEW ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Overview</a>
             </li>
-            <li className={`movie-nav__item ${tab === `Details` ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === TabsEnum.DETAILS ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Details</a>
             </li>
-            <li className={`movie-nav__item ${tab === `Reviews` ? `movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item ${tab === TabsEnum.REVIEWS ? `movie-nav__item--active` : ``}`}>
               <a href="#" className="movie-nav__link" onClick={navClickHandler}>Reviews</a>
             </li>
           </ul>
         </nav>
-        {tab === `Overview` && <Overview film={film}/>}
-        {tab === `Details` && <Details film={film}/>}
-        {tab === `Reviews` && <FilmReviews/>}
+        {tab === TabsEnum.OVERVIEW && <Overview film={film}/>}
+        {tab === TabsEnum.DETAILS && <Details film={film}/>}
+        {tab === TabsEnum.REVIEWS && <FilmReviews/>}
       </div>
 
     </React.Fragment>
@@ -50,6 +50,6 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
-  film: PropTypes.object,
+  film: PropTypes.object.isRequired,
 };
 export default Tabs;

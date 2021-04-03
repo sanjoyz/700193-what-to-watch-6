@@ -14,10 +14,9 @@ const VideoPlayer = (props) => {
 };
 
 VideoPlayer.propTypes = {
-  videoLink: PropTypes.string,
-  posterImage: PropTypes.string,
-  height: PropTypes.number,
-  width: PropTypes.number,
+  videoLink: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 };
 
 export default VideoPlayer;

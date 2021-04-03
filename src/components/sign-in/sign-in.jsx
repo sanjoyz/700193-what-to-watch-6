@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {signIn} from '../../store/api-actions';
 import {NavLink, Redirect, useHistory} from 'react-router-dom';
@@ -11,13 +11,25 @@ const SignIn = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [formValidation, setformValidation] = useState({emailValid: true, err: ``});
+
+  const validateEmail = (email) => {
+    const isValidEmail = !!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+    const message = isValidEmail ? `` : `Please enter a valid email address`;
+    setformValidation({emailValid: isValidEmail, err: message});
+  };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(signIn({
-      login: loginRef.current.value,
-      password: passwordRef.current.value,
-    }));
-    history.push(`/`);
+    if (!formValidation.emailValid) {
+      evt.stopPropagation();
+    } else {
+      dispatch(signIn({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      }));
+      history.push(`/`);
+    }
   };
 
   const authorizationStatus = useSelector(({USER}) => USER.authorizationStatus);
@@ -41,8 +53,13 @@ const SignIn = () => {
 
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+            {!formValidation.emailValid &&
+            <div className="sign-in__message">
+              <p>{formValidation.err}</p>
+            </div>
+            }
             <div className="sign-in__fields">
-              <div className="sign-in__field">
+              <div className={`sign-in__field ${formValidation.emailValid ? `` : `sign-in__field--error`} `}>
                 <input className="sign-in__input" type="email" placeholder="Email address" ref={loginRef} name="user-email" id="user-email" />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
@@ -52,7 +69,7 @@ const SignIn = () => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
+              <button className="sign-in__btn" type="submit" onClick={()=>validateEmail(loginRef.current.value)}>Sign in</button>
             </div>
           </form>
         </div>

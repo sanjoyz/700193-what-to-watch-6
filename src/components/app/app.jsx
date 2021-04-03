@@ -71,11 +71,10 @@ const App = (props) => {
   );
 };
 App.propTypes = {
-  films: PropTypes.array,
-  favoriteFilms: PropTypes.arrayOf(PropTypes.object),
-  promoFilm: PropTypes.object,
-  onLoadData: PropTypes.func,
-  isDataLoaded: PropTypes.bool,
+  films: PropTypes.array.isRequired,
+  promoFilm: PropTypes.object.isRequired,
+  onLoadData: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({

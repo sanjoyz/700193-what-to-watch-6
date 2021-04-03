@@ -64,7 +64,7 @@ const FilmButtons = (props) => {
 };
 
 FilmButtons.propTypes = {
-  film: PropTypes.object,
+  film: PropTypes.object.isRequired,
 };
 
 export default FilmButtons;

@@ -48,7 +48,7 @@ const Details = (props) => {
   );
 };
 Details.propTypes = {
-  film: PropTypes.object
+  film: PropTypes.object.isRequired
 };
 
 export default Details;

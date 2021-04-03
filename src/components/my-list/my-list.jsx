@@ -1,6 +1,5 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
-import PropTypes from 'prop-types';
 import UserBlock from '../user-block/user-block';
 import {NavLink} from 'react-router-dom';
 import {AppRoute} from '../../const';
@@ -58,15 +57,6 @@ const MyList = () => {
     </React.Fragment>
   );
 };
-MyList.propTypes = {
-  films: PropTypes.array,
-  favoriteFilms: PropTypes.array,
-  isFavoriteFilmsLoaded: PropTypes.bool,
-  loadFavorites: PropTypes.func,
-  authorizationStatus: PropTypes.string,
-  userInfo: PropTypes.object,
-};
-
 
 export default MyList;
 

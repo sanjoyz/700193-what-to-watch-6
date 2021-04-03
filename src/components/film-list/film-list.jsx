@@ -45,8 +45,8 @@ const FilmList = (props) => {
 };
 
 FilmList.propTypes = {
-  films: PropTypes.array,
-  filteredFilms: PropTypes.array,
+  films: PropTypes.array.isRequired,
+  filteredFilms: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({

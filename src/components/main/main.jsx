@@ -65,7 +65,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  films: PropTypes.array,
-  promoFilm: PropTypes.object
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
+  promoFilm: PropTypes.object.isRequired,
 };
 export default React.memo(Main);

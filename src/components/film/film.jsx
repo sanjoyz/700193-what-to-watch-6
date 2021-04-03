@@ -84,8 +84,7 @@ const Film = (props) => {
   );
 };
 Film.propTypes = {
-  films: PropTypes.array,
-  film: PropTypes.object,
+  films: PropTypes.array.isRequired,
   route: PropTypes.shape({
     match: PropTypes.shape({
       params: PropTypes.shape({

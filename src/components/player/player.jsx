@@ -11,6 +11,7 @@ const Player = (props) => {
   const videoLink = film.video_link;
   const poster = film.background_image;
   const [isPlaying, setIsPlaying] = useState(false);
+
   useEffect(() => {
     const player = document.querySelector(`.player__video`);
     const playButton = document.querySelector(`.player__play`);
@@ -82,15 +83,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.object),
-  film: PropTypes.object,
-  route: PropTypes.shape({
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string.isRequired
-      })
-    }),
-  }),
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Player;
